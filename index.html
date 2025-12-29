@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading | Business Association</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#050f14,#0a2a2f,#06171c);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#fff;
+}
+
+/* ================= NETWORK DOTS ================= */
+.network{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+
+.network span{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:#20c997;
+  border-radius:50%;
+  opacity:.6;
+  animation:float 12s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh)}
+}
+
+/* ================= GLASS CARD ================= */
+.loader-card{
+  position:relative;
+  z-index:2;
+  width:420px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(22px);
+  border-radius:26px;
+  padding:50px;
+  text-align:center;
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+  animation:fadeUp .8s ease forwards;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:24px;
+}
+
+.logo img{
+  height:52px; /* you can increase */
+}
+
+.logo span{
+  font-size:28px;
+  font-weight:700;
+  color:#20c997;
+}
+
+/* TEXT */
+.loader-card h2{
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.loader-card p{
+  font-size:14px;
+  opacity:.85;
+  margin-bottom:32px;
+}
+
+/* ================= PROGRESS BAR ================= */
+.progress-wrap{
+  width:100%;
+  height:10px;
+  background:rgba(255,255,255,.15);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#20c997,#3bf0c5);
+  animation:load 3s ease forwards;
+}
+
+/* ANIMATIONS */
+@keyframes load{
+  to{width:100%}
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:480px){
+  .loader-card{
+    width:90%;
+    padding:40px 28px;
+  }
+
+  .logo span{
+    font-size:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NETWORK DOTS -->
+<div class="network">
+  <!-- dots auto-generated -->
+</div>
+
+<!-- LOADER CARD -->
+<div class="loader-card">
+
+  <div class="logo">
+    <img src="logo.webp" alt="Logo">
+  </div>
+
+  <h2>Connecting Businesses</h2>
+  <p>Preparing your corporate experience</p>
+
+  <div class="progress-wrap">
+    <div class="progress-bar"></div>
+  </div>
+
+</div>
+
+<script>
+/* CREATE NETWORK DOTS */
+const network = document.querySelector('.network');
+for(let i=0;i<40;i++){
+  const dot = document.createElement('span');
+  dot.style.left = Math.random()*100 + '%';
+  dot.style.top = Math.random()*100 + '%';
+  dot.style.animationDuration = 8 + Math.random()*8 + 's';
+  network.appendChild(dot);
+}
+
+/* REDIRECT TO HOME */
+setTimeout(()=>{
+  window.location.href = "home.html";
+},3000);
+</script>
+
+</body>
+</html>

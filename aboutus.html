@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Dashboard with Charts</title>
+
+  <style>
+    .fade-in { animation: fadeIn .6s ease forwards; opacity: 0; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(15px);} to{opacity:1;transform:translateY(0);} }
+
+    .pop { animation: pop .45s ease; }
+    @keyframes pop { from{transform:scale(.92);opacity:0;} to{transform:scale(1);opacity:1;} }
+
+    .slide-up { animation: slideUp .7s ease forwards; opacity: 0; }
+    @keyframes slideUp { from{opacity:0;transform:translateY(25px);} to{opacity:1;transform:translateY(0);} }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(14px);
+    }
+  </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>STACKLY</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- FIXED FONT AWESOME (YOU WERE USING WRONG VERSION) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+  /* Make hamburger always visible */
+  #hamburgerBtn i {
+    color: #000 !important;
+    font-size: 28px !important;
+  }
+</style>
+
+</head>
+<body>
+
+<body class="font-sans bg-gray-50">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Home 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#0c0f1c;
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header-wrapper{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+}
+
+.header{
+  width:calc(100% - 60px);
+  max-width:1400px;
+  height:96px;
+  padding:0 34px;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+/* LOGO */
+.logo img{
+  height:52px;
+}
+
+/* DESKTOP NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-weight:600;
+}
+
+.nav a{
+  color:#000000;
+  text-decoration:none;
+}
+.nav a:hover,
+.active{
+  color:#22d3ee;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:140%;
+  left:0;
+  background:#ffffff;
+  border-radius:14px;
+  min-width:160px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  font-size:14px;
+}
+
+/* LOGIN */
+.login-btn{
+  background:#2279e4;
+  color:#000000;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.2);
+}
+.hamburger i{
+  font-size:22px;
+  color:#000000;
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:110px;
+  left:20px;
+  right:20px;
+  background:rgba(255, 255, 255, 0.92);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:24px;
+  display:none;
+  z-index:999;
+}
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu a,
+.mobile-drop-btn{
+  display:block;
+  width:100%;
+  padding:12px 0;
+  color:#000000;
+  background:none;
+  border:none;
+  text-align:left;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* MOBILE DROPDOWN */
+.mobile-drop{
+  display:none;
+  padding-left:14px;
+}
+.mobile-drop.open{
+  display:block;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 6% 0;
+  overflow:hidden;
+}
+
+/* BG IMAGE (DESKTOP) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0.12)),
+    url("bg.webp");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(1.1) contrast(1.1) saturate(1.05);
+  z-index:0;
+}
+
+/* CURVE MASK (DESKTOP) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-12%;
+  width:55%;
+  height:100%;
+  background:inherit;
+  clip-path:ellipse(85% 100% at 100% 50%);
+  z-index:1;
+}
+
+/* DOTS */
+.dots{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(
+    rgba(255,255,255,0.18) 1px,
+    transparent 1px
+  );
+  background-size:22px 22px;
+  opacity:.14;
+  z-index:2;
+}
+
+/* HERO CONTENT */
+.hero-left{
+  max-width:650px;
+  position:relative;
+  z-index:3;
+}
+
+.hero-left small{
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+.hero-title{
+  font-size:52px;
+  margin:20px 0;
+  line-height:1.2;
+}
+
+.animate-text{
+  color:#ff5c2d;
+  display:inline-block;
+  animation:scaleFade 2.5s infinite;
+}
+
+.hero-btn{
+  background:#ff5c2d;
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TEXT ANIMATION */
+@keyframes scaleFade{
+  0%{transform:scale(.6);opacity:0}
+  40%{transform:scale(1);opacity:1}
+  100%{opacity:0}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1117px){
+  .nav{display:none}
+  .hamburger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    padding:120px 8% 0;
+    text-align:center;
+  }
+
+  /* MOBILE BG */
+  .hero::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),
+      url("bg.webp");
+    background-size:cover;
+    background-position:top center;
+  }
+
+  .hero::after{
+    display:none;
+  }
+
+  .hero-left{
+    margin:auto;
+  }
+
+  .hero-title{
+    font-size:36px;
+  }
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
+<div class="header-wrapper">
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="logo.webp" alt="Stackly">
+    </a>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="index.html">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="home2.html">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="aboutus.html" class="active">Dashboard</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-drop-btn" id="mobileDropBtn">
+    Home <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="mobile-drop" id="mobileDrop">
+    <a href="home2.html">Home 2</a>
+  </div>
+
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="aboutus.html"class="nav-link"
+   style="color:#2563eb; font-weight:700;">Dashboard</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" style="color:#1150bd">LOGIN</a>
+</div>
+
+<script>
+/* MOBILE MENU */
+const hamburgerBtn=document.getElementById("hamburgerBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const mobileDropBtn=document.getElementById("mobileDropBtn");
+const mobileDrop=document.getElementById("mobileDrop");
+
+hamburgerBtn.onclick=()=>mobileMenu.classList.toggle("open");
+mobileDropBtn.onclick=()=>mobileDrop.classList.toggle("open");
+
+/* HERO TEXT LOOP */
+const words=["Talent","Team","Experts","Leaders"];
+let i=0;
+const t=document.getElementById("txt");
+
+setInterval(()=>{
+  i=(i+1)%words.length;
+  t.textContent=words[i];
+},2500);
+</script>
+
+
+
+
+<!-- ================= ACTIVE PAGE STYLE ================= -->
+<style>
+  .active {
+    color: #2563eb !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 8px rgba(37, 99, 235, 0.6),
+                 0 0 12px rgba(37, 99, 235, 0.4);
+  }
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  /* Mobile dropdown */
+  function toggleMobileDrop() {
+    document.getElementById("mobileHomeDrop").classList.toggle("hidden");
+  }
+
+  /* Mobile hamburger menu */
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  hamburgerBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  /* ACTIVE PAGE HIGHLIGHT */
+  const currentPage = window.location.pathname.split("/").pop();
+  const links = document.querySelectorAll(".nav-link");
+
+  links.forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    }
+  });
+</script>
+
+<div class="mt-24 px-6">
+    <!-- your dashboard / content here -->
+</div>
+
+<!-- MOBILE MENU -->
+<nav id="mobileMenu" class="hidden fixed top-[80px] left-0 w-full bg-white border-t shadow-lg z-40">
+  <div class="px-6 py-6 flex flex-col gap-4 text-lg font-semibold">
+
+    <!-- MOBILE HOME DROPDOWN -->
+<button onclick="toggleMobileDrop()" class="flex items-center justify-between w-full">
+  <span>Home</span>
+  <i class="fa-solid fa-chevron-down text-sm"></i>
+</button>
+
+<div id="mobileHomeDrop" class="hidden pl-4">
+  <a href="home2.html" class="block py-2">Home 2</a>
+</div>
+
+
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="aboutus.html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+
+    <!-- MOBILE LOGIN -->
+    <a href="login.html" class="text-blue-600 font-semibold">Login</a>
+  </div>
+</nav>
+
+<!-- JS -->
+<script>
+  // Hamburger toggle
+  document.getElementById("hamburgerBtn").addEventListener("click", function () {
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+  });
+
+  // Mobile dropdown toggle
+  function toggleMobileDrop() {
+    document.getElementById("mobileHomeDrop").classList.toggle("hidden");
+  }
+</script>
+
+</body>
+</html>
+
+
+<body class="pt-30"></body>
+
+
+<body class="bg-gray-50 min-h-screen p-6">
+
+
+
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 fade-in">
+
+    <!-- LEFT SECTION -->
+    <div class="lg:col-span-2 space-y-6">
+
+      
+
+      <!-- REVENUE FLOW CHART -->
+      <div class="glass p-6 rounded-2xl shadow-lg slide-up">
+        <div class="flex justify-between mb-4">
+          <h2 class="text-xl font-bold">Revenue Flow</h2>
+<a href="404.html" class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+  View All
+</a>
+        </div>
+        <canvas id="revenueChart" height="100"></canvas>
+      </div>
+
+      <!-- LOWER GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- DONUT CHART -->
+        <div class="glass p-6 rounded-2xl shadow-lg slide-up">
+          <div class="flex justify-between">
+            <h2 class="text-lg font-bold">Available</h2>
+<a href="404.html" class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+  View All
+</a>
+          </div>
+          <canvas id="donutChart" class="mt-6"></canvas>
+        </div>
+
+        <!-- INCOME -->
+        <div class="glass p-6 rounded-2xl shadow-lg pop">
+          <h2 class="text-lg font-bold">Income</h2>
+          <p class="mt-4 text-2xl font-semibold">$2,240</p>
+          <p class="text-green-500 font-semibold mt-1">+12%</p>
+          <p class="text-sm text-gray-500">This week’s income</p>
+        </div>
+
+        <!-- EXPENSE -->
+        <div class="glass p-6 rounded-2xl shadow-lg pop">
+          <h2 class="text-lg font-bold">Expense</h2>
+          <p class="mt-4 text-2xl font-semibold">$1,750</p>
+          <p class="text-blue-500 font-semibold mt-1">+8%</p>
+          <p class="text-sm text-gray-500">This week’s expense</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT SECTION -->
+    <div class="space-y-6">
+
+      <!-- CARD -->
+      <div class="glass p-6 rounded-2xl shadow-lg slide-up">
+        <div class="flex justify-between">
+          <h2 class="text-xl font-bold">My Card</h2>
+<a href="404.html" class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+  View All
+</a>
+        </div>
+
+        <div class="bg-green-500 text-white p-6 rounded-xl mt-4 shadow pop">
+          <p class="text-lg">Total Balance</p>
+          <p class="text-3xl font-bold">$22,350.50</p>
+
+          <p class="mt-6 tracking-widest">4358 4445 0968 2323</p>
+          <p class="text-sm">08/24</p>
+        </div>
+      </div>
+
+      <!-- TRANSACTIONS -->
+      <div class="glass p-6 rounded-2xl shadow-lg slide-up">
+        <div class="flex justify-between">
+          <h2 class="text-xl font-bold">Transactions</h2>
+<a href="404.html" class="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+  View All
+</a>
+        </div>
+
+        <div class="mt-4 space-y-4">
+          <div class="flex justify-between"><span>Figma</span><span class="text-red-500">- $15.00</span></div>
+          <div class="flex justify-between"><span>Grammarly</span><span class="text-red-500">- $10.00</span></div>
+          <div class="flex justify-between"><span>Blender</span><span class="text-red-500">- $15.00</span></div>
+        </div>
+      </div>
+
+      <!-- SPENDING CHART -->
+      <div class="glass p-6 rounded-2xl shadow-lg slide-up">
+        <h2 class="text-lg font-bold">Spending</h2>
+        <canvas id="spendingChart" class="mt-4"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= REAL CHARTS ================= -->
+  <script>
+    // REVENUE BAR CHART
+    new Chart(document.getElementById("revenueChart"), {
+      type: "bar",
+      data: {
+        labels: ["Mar","Apr","May","Jun","Jul","Aug","Sep"],
+        datasets: [{
+          label: "Revenue",
+          data: [1200,1400,1100,1000,1800,1200,1500],
+          backgroundColor: "#7C3AED",
+          borderRadius: 12
+        }]
+      },
+      options: {
+        animation: { duration: 1200, easing: "easeOutQuart" },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    // DONUT CHART
+    new Chart(document.getElementById("donutChart"), {
+      type: "doughnut",
+      data: {
+        labels: ["Food","Clothes","Other"],
+        datasets: [{
+          data: [950,420,480],
+          backgroundColor: ["#8B5CF6", "#10B981", "#FBBF24"],
+          hoverOffset: 20
+        }]
+      },
+      options: {
+        cutout: "65%",
+        animation: { animateRotate: true, duration: 1500 }
+      }
+    });
+
+    // SPENDING LINE CHART
+    new Chart(document.getElementById("spendingChart"), {
+      type: "line",
+      data: {
+        labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+        datasets: [{
+          label: "Spending",
+          data: [300,500,450,600,550,700,650],
+          borderColor: "#10B981",
+          backgroundColor: "rgba(16,185,129,0.2)",
+          fill: true,
+          tension: 0.4,
+        }]
+      },
+      options: {
+        animation: { duration: 1400, easing: "easeOutCubic" },
+        scales: { y: { beginAtZero: false } }
+      }
+    });
+  </script>
+
+</body>
+</html>
+<script>
+// Smooth fade + slide for all sections
+gsap.utils.toArray(".glass").forEach((box, i) => {
+  gsap.from(box, {
+    opacity: 0,
+    y: 40,
+    scale: 0.96,
+    duration: 0.9,
+    delay: i * 0.15,
+    ease: "power3.out"
+  });
+});
+
+// Slide-in for header gap container
+gsap.from(".mt-24", {
+  opacity: 0,
+  y: -20,
+  duration: 0.9,
+  ease: "power2.out"
+});
+
+// Cards pop animation
+gsap.utils.toArray(".pop").forEach((el, i) => {
+  gsap.from(el, {
+    scale: 0.85,
+    opacity: 0,
+    duration: 0.7,
+    delay: 0.4 + i * 0.15,
+    ease: "back.out(1.7)"
+  });
+});
+
+// Slide up animations
+gsap.utils.toArray(".slide-up").forEach((el, i) => {
+  gsap.from(el, {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    delay: 0.2 + i * 0.12,
+    ease: "power3.out"
+  });
+});
+
+// Chart pop effect
+function animateCanvasCharts() {
+  gsap.from("canvas", {
+    opacity: 0,
+    scale: 0.9,
+    duration: 1,
+    delay: 0.5,
+    ease: "power2.out",
+    stagger: 0.2
+  });
+}
+setTimeout(animateCanvasCharts, 300);
+
+// Right panel slide-in
+gsap.from(".space-y-6", {
+  opacity: 0,
+  x: 50,
+  duration: 1.1,
+  delay: 0.3,
+  ease: "power3.out"
+});
+
+// Stagger for left charts
+gsap.from(".lg\\:col-span-2 > div", {
+  opacity: 0,
+  y: 30,
+  duration: 1,
+  stagger: 0.15,
+  ease: "power2.out"
+});
+</script>
+ <!-- ⭐ YOUR EXISTING FOOTER (DO NOT CHANGE) -->
+   <!-- FOOTER FIXED -->
+<footer class="bg-[#0c0016] text-gray-300 py-16 px-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-3 gap-12 items-start text-center md:text-left">
+
+      <!-- LEFT -->
+      <div>
+        <img src="logo.webp" class="w-20 mx-auto md:mx-0 mb-3" />
+        <h3 class="text-2xl font-bold text-white"></h3>
+        <p class="mt-3 text-gray-400 text-sm leading-relaxed">
+          Get your business engaged
+        </p>
+      </div>
+
+      <!-- CENTER -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Main</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="about.html" class="hover:text-white">About us</a></li>
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="aboutus.html" class="hover:text-white">Dashboard</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Social</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+           <li><i class="fa-brands fa-facebook mr-2"></i> <a href="404.html" class="hover:text-white">Facebook</a></li>
+          <li><i class="fa-brands fa-twitter mr-2"></i> <a href="404.html" class="hover:text-white">Twitter</a></li>
+          <li><i class="fa-brands fa-linkedin mr-2"></i> <a href="404.html" class="hover:text-white">LinkedIn</a></li>
+          <li><i class="fa-brands fa-instagram mr-2"></i> <a href="404.html" class="hover:text-white">Instagram</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-6">
+      © Stackly – 2025. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+
+
+
+  <!-- CLEAN JS (ONLY ONE SCRIPT) -->
+  <script>
+    const btn = document.getElementById("hamburgerBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      document.body.style.overflow = menu.classList.contains("hidden") ? "auto" : "hidden";
+    });
+
+    const elements = document.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach((el) => observer.observe(el));
+  </script>
+
+
+</body>
+</html>
+
+  <!-- paste your real footer here -->
+
+  <!-- SCROLL ANIMATION + HAMBURGER -->
+  <script>
+    const items = document.querySelectorAll("[data-animate]");
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("visible");
+      });
+    }, {threshold: 0.2});
+    items.forEach(i => obs.observe(i));
+
+    // if your hamburger needs JS:
+    const btn = document.getElementById("hamburgerBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    }
+  const items = document.querySelectorAll("[data-animate]");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        entry.target.style.transitionDelay = (Math.random() * 0.3) + "s";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  items.forEach(i => observer.observe(i));
+</script>
+
+<style>
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.7s cubic-bezier(.25,.8,.25,1);
+  }
+  .visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+  </script>
+
+</body>
+</html>
+
+
+<script>
+/* ---------- A: small UI toggles ---------- */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburgerBtn.addEventListener('click', () => mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block');
+function toggleMobileDrop(){const el=document.getElementById('mobileHomeDrop');el.style.display = el.style.display === 'block' ? 'none' : 'block';}
+document.querySelectorAll('.group').forEach(g => {
+  g.addEventListener('mouseenter', ()=> {const d=g.querySelector('.home-dropdown'); if(d) d.style.display='block';});
+  g.addEventListener('mouseleave', ()=> {const d=g.querySelector('.home-dropdown'); if(d) d.style.display='none';});
+});
+window.addEventListener('resize', ()=> { if(window.innerWidth>980) mobileMenu.style.display='none'; });
+
+/* ---------- B: GSAP micro-animations (floating shapes + hero) ---------- */
+gsap.registerPlugin(ScrollTrigger);
+gsap.to(".shape.s1", { x: 40, y: -20, duration: 8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+gsap.to(".shape.s2", { x: -40, y: 10, duration: 10, repeat: -1, yoyo: true, ease: "sine.inOut" });
+
+gsap.from(".hero-title", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: .2 });
+gsap.from(".hero-sub", { y: 20, opacity: 0, duration: 1, ease: "power3.out", delay: .35 });
+gsap.from(".hero-img", { scale: .98, opacity:0, duration:1.1, ease:"power3.out", delay:.4 });
+
+/* Scroll reveal for service cards */
+gsap.utils.toArray('.service-card').forEach((el,i)=>{
+  gsap.from(el, { y: 40, opacity:0, duration: .9, delay: i*0.08, scrollTrigger:{trigger:el, start:"top 80%"} });
+});
+/* ---------- D: FAQ accordion (touch/click, fade+slide) ---------- */
+document.querySelectorAll('.faq-box').forEach(box => {
+  box.addEventListener('click', () => {
+
+    const answer = box.querySelector('.faq-a');
+    const icon = box.querySelector('.faq-q i');
+
+    // CLOSE ALL OTHERS
+    document.querySelectorAll('.faq-box').forEach(other => {
+      if(other !== box){
+        const otherAnswer = other.querySelector('.faq-a');
+        const otherIcon = other.querySelector('.faq-q i');
+        otherAnswer.style.maxHeight = null;
+        otherAnswer.classList.remove('open');
+        otherIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // TOGGLE THIS ONE
+    if(answer.classList.contains('open')){
+      answer.style.maxHeight = null;
+      answer.classList.remove('open');
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      answer.classList.add('open');
+      icon.style.transform = 'rotate(180deg)';
+    }
+
+  });
+});
+
+/* Counters: IntersectionObserver -> count */
+const counters = document.querySelectorAll('.counter-item');
+const counterObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const numEl = entry.target.querySelector('.counter-number');
+      const target = +entry.target.getAttribute('data-target') || 0;
+      let start = 0; const dur = 1200; const step = Math.max(1, Math.round(target / (dur/20)));
+      const timer = setInterval(()=> {
+        start += step;
+        if(start >= target){ numEl.textContent = target + (target>=100?'+':''); clearInterval(timer); }
+        else numEl.textContent = start;
+      }, 20);
+      obs.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.5});
+counters.forEach(c => counterObserver.observe(c));
+
+/* ---------- C: Testimonials slider (autoplay + controls + swipe) ---------- */
+const slider = document.getElementById('testimonialSlider');
+const dotsWrap = document.getElementById('testimonialDots');
+const slides = slider.children;
+let slideIndex = 0;
+const total = slides.length;
+
+// build dots
+for(let i=0;i<total;i++){
+  const dot = document.createElement('div');
+  dot.className = 'dot';
+  dot.dataset.i = i;
+  dot.addEventListener('click', ()=> goToSlide(i));
+  dotsWrap.appendChild(dot);
+}
+function updateDots(){Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === slideIndex));}
+function goToSlide(i){
+  slideIndex = i;
+  slider.style.transform = `translateX(-${slideIndex*100}%)`;
+  updateDots();
+}
+function nextSlide(){ slideIndex = (slideIndex+1) % total; goToSlide(slideIndex); }
+function prevSlide(){ slideIndex = (slideIndex-1+total) % total; goToSlide(slideIndex); }
+document.getElementById('nextBtn').addEventListener('click', nextSlide);
+document.getElementById('prevBtn').addEventListener('click', prevSlide);
+updateDots();
+// autoplay
+let autoplay = setInterval(nextSlide, 4000);
+document.getElementById('testimonialSlider').addEventListener('mouseenter', ()=> clearInterval(autoplay));
+document.getElementById('testimonialSlider').addEventListener('mouseleave', ()=> autoplay = setInterval(nextSlide, 4000));
+
+// touch swipe for slider
+let startX = 0;
+slider.addEventListener('touchstart', (e)=> startX = e.touches[0].clientX);
+slider.addEventListener('touchend', (e)=> {
+  const endX = e.changedTouches[0].clientX;
+  if(endX - startX > 40) prevSlide();
+  if(startX - endX > 40) nextSlide();
+});
+
+/* ---------- D: FAQ accordion (touch/click, fade+slide) ---------- */
+document.querySelectorAll('.faq-box').forEach(box => {
+  box.addEventListener('click', () => {
+    const answer = box.querySelector('.faq-a');
+    const icon = box.querySelector('.faq-q i');
+
+    // close others
+    document.querySelectorAll('.faq-a').forEach(a => {
+      if(a !== answer){ a.style.maxHeight = null; a.classList.remove('open'); const i = a.parentElement.querySelector('.faq-q i'); if(i) i.style.transform = 'rotate(0deg)'; }
+    });
+
+    if(answer.classList.contains('open')){
+      // close
+      answer.style.maxHeight = null;
+      answer.classList.remove('open');
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      answer.classList.add('open');
+      icon.style.transform = 'rotate(180deg)';
+    }
+  });
+});
+
+/* ---------- E: A small entrance for articles ---------- */
+gsap.utils.toArray('.article-card').forEach((el, i) => {
+  gsap.from(el, { y: 26, opacity: 0, duration: 1, delay: i*0.08, scrollTrigger:{ trigger: el, start: "top 85%"} });
+});
+
+/* ---------- F: small accessibility/fallbacks ---------- */
+window.addEventListener('load', ()=> {
+  // ensure hero video doesn't block on older devices
+  const v = document.querySelector('.hero-video');
+  if(v && ( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) )) {
+    v.style.display = 'none';
+  }
+});
+
+/* ---------- Init GSAP ScrollTrigger (for other elements) ---------- */
+ScrollTrigger.refresh();
+</script>
+
+</body>
+</html>

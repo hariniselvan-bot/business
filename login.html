@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - STACKLY</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #9bdcff, #64b9ff, #1e90ff);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .login-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 80px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 110px;
+      padding-bottom: 40px;
+    }
+
+    .login-card {
+      width: 350px;
+      padding: 35px 30px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.25);
+      color: white;
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px 40px 12px 38px;
+      background: rgba(255,255,255,0.25);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      color: white;
+      outline: none;
+    }
+
+    .input-box i {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: white;
+      opacity: 0.9;
+    }
+
+    .error-text {
+      color: #ff3030;
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: #324fa4;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: black;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Home 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header-wrapper{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+}
+
+.header{
+  width:calc(100% - 60px);
+  max-width:1400px;
+  height:96px;
+  padding:0 34px;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+/* LOGO */
+.logo img{
+  height:52px;
+}
+
+/* DESKTOP NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-weight:600;
+}
+
+.nav a{
+  color:#e5e7eb;
+  text-decoration:none;
+}
+.nav a:hover,
+.active{
+  color:#22d3ee;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:140%;
+  left:0;
+  background:#000;
+  border-radius:14px;
+  min-width:160px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  font-size:14px;
+}
+
+/* LOGIN */
+.login-btn{
+  background:#2279e4;
+  color:#ffffff;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.2);
+}
+.hamburger i{
+  font-size:22px;
+  color:#fff;
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:110px;
+  left:20px;
+  right:20px;
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:24px;
+  display:none;
+  z-index:999;
+}
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu a,
+.mobile-drop-btn{
+  display:block;
+  width:100%;
+  padding:12px 0;
+  color:#fff;
+  background:none;
+  border:none;
+  text-align:left;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* MOBILE DROPDOWN */
+.mobile-drop{
+  display:none;
+  padding-left:14px;
+}
+.mobile-drop.open{
+  display:block;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 6% 0;
+  overflow:hidden;
+}
+
+/* BG IMAGE (DESKTOP) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0.12)),
+    url("bg.webp");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(1.1) contrast(1.1) saturate(1.05);
+  z-index:0;
+}
+
+/* CURVE MASK (DESKTOP) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-12%;
+  width:55%;
+  height:100%;
+  background:inherit;
+  clip-path:ellipse(85% 100% at 100% 50%);
+  z-index:1;
+}
+
+/* DOTS */
+.dots{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(
+    rgba(255,255,255,0.18) 1px,
+    transparent 1px
+  );
+  background-size:22px 22px;
+  opacity:.14;
+  z-index:2;
+}
+
+/* HERO CONTENT */
+.hero-left{
+  max-width:650px;
+  position:relative;
+  z-index:3;
+}
+
+.hero-left small{
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+.hero-title{
+  font-size:52px;
+  margin:20px 0;
+  line-height:1.2;
+}
+
+.animate-text{
+  color:#ff5c2d;
+  display:inline-block;
+  animation:scaleFade 2.5s infinite;
+}
+
+.hero-btn{
+  background:#ff5c2d;
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TEXT ANIMATION */
+@keyframes scaleFade{
+  0%{transform:scale(.6);opacity:0}
+  40%{transform:scale(1);opacity:1}
+  100%{opacity:0}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1117px){
+  .nav{display:none}
+  .hamburger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    padding:120px 8% 0;
+    text-align:center;
+  }
+
+  /* MOBILE BG */
+  .hero::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),
+      url("bg.webp");
+    background-size:cover;
+    background-position:top center;
+  }
+
+  .hero::after{
+    display:none;
+  }
+
+  .hero-left{
+    margin:auto;
+  }
+
+  .hero-title{
+    font-size:36px;
+  }
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
+<div class="header-wrapper">
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="logo.webp" alt="Stackly">
+    </a>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="index.html" class="active">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="home2.html">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="aboutus.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-drop-btn" id="mobileDropBtn">
+    Home <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="mobile-drop" id="mobileDrop">
+    <a href="home2.html">Home 2</a>
+  </div>
+
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="aboutus.html">Dashboard</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" style="color:#1150bd">LOGIN</a>
+</div>
+
+<script>
+/* MOBILE MENU */
+const hamburgerBtn=document.getElementById("hamburgerBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const mobileDropBtn=document.getElementById("mobileDropBtn");
+const mobileDrop=document.getElementById("mobileDrop");
+
+hamburgerBtn.onclick=()=>mobileMenu.classList.toggle("open");
+mobileDropBtn.onclick=()=>mobileDrop.classList.toggle("open");
+
+/* HERO TEXT LOOP */
+const words=["Talent","Team","Experts","Leaders"];
+let i=0;
+const t=document.getElementById("txt");
+
+setInterval(()=>{
+  i=(i+1)%words.length;
+  t.textContent=words[i];
+},2500);
+</script>
+
+
+
+<!-- ================= LOGIN FORM ================= -->
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <h2 class="text-center text-2xl font-bold mb-6">Login</h2>
+
+    <div class="input-box">
+      <i class="fa-solid fa-envelope"></i>
+      <input type="text" id="email" placeholder="Enter Email">
+    </div>
+    <p id="emailError" class="error-text">Email must end with @gmail.com</p>
+
+    <div class="input-box">
+      <i class="fa-solid fa-lock"></i>
+      <input type="password" id="password" placeholder="Enter Password">
+    </div>
+    <p id="passError" class="error-text">Password cannot be empty</p>
+
+    <!-- Remember Me + Forgot Password -->
+    <div class="flex justify-between items-center mt-2">
+      <label class="flex items-center gap-2">
+        <input type="checkbox" id="remember">
+        <span class="text-sm text-white">Remember Me</span>
+      </label>
+
+      <a href="404.html" class="text-white underline text-sm">
+        Forgot Password?
+      </a>
+    </div>
+
+    <button class="btn-login" onclick="validateLogin()">LOGIN</button>
+
+    <p class="text-center mt-4 text-white text-sm">
+      Don't have an account? <a href="signup.html" class="underline font-semibold">Signup</a>
+    </p>
+
+  </div>
+</div>
+
+<footer>
+  © 2025 STACKLY — All Rights Reserved
+</footer>
+
+<!-- ========== VALIDATION SCRIPT ========== -->
+<script>
+function validateLogin() {
+  let email = document.getElementById("email").value.trim();
+  let pass = document.getElementById("password").value.trim();
+
+  let emailError = document.getElementById("emailError");
+  let passError = document.getElementById("passError");
+
+  emailError.style.display = "none";
+  passError.style.display = "none";
+
+  let valid = true;
+
+  if (!email.endsWith("@gmail.com")) {
+    emailError.style.display = "block";
+    valid = false;
+  }
+
+  if (pass === "") {
+    passError.style.display = "block";
+    valid = false;
+  }
+
+  if (valid) window.location.href = "404.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Stackly</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    /* scroll animation */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-[#f9f8fc]">
+
+  <!-- ⭐ YOUR EXISTING HEADER (DO NOT CHANGE) -->
+   
+  <style>
+    .header {
+      background: #f1f1f1;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s ease;
+    }
+
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* NEW */
+  text-align: center;      /* NEW */
+}
+
+.hero .hero-inner {
+  max-width: 780px;        /* cleaner centered width */
+  margin: 0 auto;
+}
+.site-logo {
+  margin-left: 0;     /* ensures it's aligned left */
+}
+
+header.site-header .container {
+  justify-content: space-between; /* keep nav on right */
+}
+
+@media (min-width: 768px){
+  .site-logo {
+    transform: translateX(-10px); /* slightly more left */
+  }
+}
+.hero [data-animate] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: all .9s ease;
+}
+
+.hero [data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+  
+    .hero-bg {
+      background: url('hp1bg.webp') center/cover no-repeat;
+    }
+    .btn-get-started {
+  background: #00cccc;
+  color: rgb(255, 255, 255);
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-get-started:hover {
+  background: #009999;
+  transform: scale(1.05);
+}
+.card-img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+/* Fade + Slide + Scale animation */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger animation */
+[data-animate]:nth-child(1) { transition-delay: 0.1s; }
+[data-animate]:nth-child(2) { transition-delay: 0.2s; }
+[data-animate]:nth-child(3) { transition-delay: 0.3s; }
+[data-animate]:nth-child(4) { transition-delay: 0.4s; }
+[data-animate]:nth-child(5) { transition-delay: 0.5s; }
+[data-animate]:nth-child(6) { transition-delay: 0.6s; }
+
+/* Hover animation on cards */
+.service-card, .insight-card {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.service-card:hover, 
+.insight-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Footer social buttons */
+.social-btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.social-btn:hover {
+  background: #00cccc;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px #00cccc;
+}
+
+.btn-get-started {
+  transition: 0.35s ease;
+}
+
+.btn-get-started:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+}
+.hero {
+  animation: slowzoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes slowzoom {
+  from { background-size: 100%; }
+  to   { background-size: 108%; }
+}
+
+.header .logo img{
+  height:42px;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+}
+
+
+  </style>
+</head>
+
+<body class="font-sans bg-gray-50">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Home 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#0c0f1c;
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header-wrapper{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+}
+
+.header{
+  width:calc(100% - 60px);
+  max-width:1400px;
+  height:96px;
+  padding:0 34px;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+/* LOGO */
+.logo img{
+  height:52px;
+}
+
+/* DESKTOP NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-weight:600;
+}
+
+.nav a{
+  color:#000000;
+  text-decoration:none;
+}
+.nav a:hover,
+.active{
+  color:#22d3ee;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:140%;
+  left:0;
+  background:#ffffff;
+  border-radius:14px;
+  min-width:160px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  font-size:14px;
+}
+
+/* LOGIN */
+.login-btn{
+  background:#2279e4;
+  color:#000000;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.2);
+}
+.hamburger i{
+  font-size:22px;
+  color:#000000;
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:110px;
+  left:20px;
+  right:20px;
+  background:rgba(255, 255, 255, 0.92);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:24px;
+  display:none;
+  z-index:999;
+}
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu a,
+.mobile-drop-btn{
+  display:block;
+  width:100%;
+  padding:12px 0;
+  color:#000000;
+  background:none;
+  border:none;
+  text-align:left;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* MOBILE DROPDOWN */
+.mobile-drop{
+  display:none;
+  padding-left:14px;
+}
+.mobile-drop.open{
+  display:block;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 6% 0;
+  overflow:hidden;
+}
+
+/* BG IMAGE (DESKTOP) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0.12)),
+    url("bg.webp");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(1.1) contrast(1.1) saturate(1.05);
+  z-index:0;
+}
+
+/* CURVE MASK (DESKTOP) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-12%;
+  width:55%;
+  height:100%;
+  background:inherit;
+  clip-path:ellipse(85% 100% at 100% 50%);
+  z-index:1;
+}
+
+/* DOTS */
+.dots{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(
+    rgba(255,255,255,0.18) 1px,
+    transparent 1px
+  );
+  background-size:22px 22px;
+  opacity:.14;
+  z-index:2;
+}
+
+/* HERO CONTENT */
+.hero-left{
+  max-width:650px;
+  position:relative;
+  z-index:3;
+}
+
+.hero-left small{
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+.hero-title{
+  font-size:52px;
+  margin:20px 0;
+  line-height:1.2;
+}
+
+.animate-text{
+  color:#ff5c2d;
+  display:inline-block;
+  animation:scaleFade 2.5s infinite;
+}
+
+.hero-btn{
+  background:#ff5c2d;
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TEXT ANIMATION */
+@keyframes scaleFade{
+  0%{transform:scale(.6);opacity:0}
+  40%{transform:scale(1);opacity:1}
+  100%{opacity:0}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1117px){
+  .nav{display:none}
+  .hamburger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    padding:120px 8% 0;
+    text-align:center;
+  }
+
+  /* MOBILE BG */
+  .hero::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),
+      url("bg.webp");
+    background-size:cover;
+    background-position:top center;
+  }
+
+  .hero::after{
+    display:none;
+  }
+
+  .hero-left{
+    margin:auto;
+  }
+
+  .hero-title{
+    font-size:36px;
+  }
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
+<div class="header-wrapper">
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="logo.webp" alt="Stackly">
+    </a>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="index.html" class="active">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="home2.html">Home 2</a>
+        </div>
+      </div>
+      <a href="about.htmlclass="nav-link"
+   style="color:#2563eb; font-weight:700;">About</a>
+      <a href="services.html" >Services</a>
+      <a href="aboutus.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-drop-btn" id="mobileDropBtn">
+    Home <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="mobile-drop" id="mobileDrop">
+    <a href="home2.html">Home 2</a>
+  </div>
+
+  <a href="about.html"class="nav-link"
+   style="color:#2563eb; font-weight:700;">About</a>
+  <a href="services.html">Services</a>
+  <a href="aboutus.html">Dashboard</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" style="color:#1150bd">LOGIN</a>
+</div>
+
+<script>
+/* MOBILE MENU */
+const hamburgerBtn=document.getElementById("hamburgerBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const mobileDropBtn=document.getElementById("mobileDropBtn");
+const mobileDrop=document.getElementById("mobileDrop");
+
+hamburgerBtn.onclick=()=>mobileMenu.classList.toggle("open");
+mobileDropBtn.onclick=()=>mobileDrop.classList.toggle("open");
+
+/* HERO TEXT LOOP */
+const words=["Talent","Team","Experts","Leaders"];
+let i=0;
+const t=document.getElementById("txt");
+
+setInterval(()=>{
+  i=(i+1)%words.length;
+  t.textContent=words[i];
+},2500);
+</script>
+
+
+
+
+
+  <!-- paste your real header here -->
+
+ <!-- ABOUT HERO – Premium Minimal -->
+<section class="pt-32 pb-24 bg-gradient-to-b from-white to-gray-50 text-center">
+  <div data-animate class="max-w-3xl mx-auto">
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+      About <span class="text-[#7e079b]">Stackly</span>
+    </h1>
+    <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+      We combine strategy, creativity, and innovation to build digital experiences  
+      that move businesses forward. Our team designs future-ready solutions  
+      with a premium, minimal, and technology-first approach.
+    </p>
+  </div>
+</section>
+
+
+<!-- WHO WE ARE – Glassmorphism -->
+<section class="py-24 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+
+    <!-- Image -->
+    <div data-animate>
+      <img src="aboutpg11.webp" class="w-full rounded-3xl shadow-2xl">
+    </div>
+
+    <!-- Text -->
+    <div data-animate>
+      <h2 class="text-4xl font-bold mb-5">ABOUT US</h2>
+
+      <p class="text-gray-600 leading-relaxed mb-6">
+        Stackly is a premium digital solutions company built to accelerate business 
+        growth through modern, scalable, and elegant technology solutions.  
+        We create brands, platforms, and systems designed to last.
+      </p>
+
+      <div class="backdrop-blur-xl bg-white/40 rounded-2xl p-6 shadow-xl border border-white/20 space-y-4">
+        <p class="text-gray-700"><i class="fa-solid fa-check text-[#7e079b] mr-2"></i> 10+ years combined experience</p>
+        <p class="text-gray-700"><i class="fa-solid fa-check text-[#7e079b] mr-2"></i> Modern design & branding excellence</p>
+        <p class="text-gray-700"><i class="fa-solid fa-check text-[#7e079b] mr-2"></i> Deep expertise in development & automation</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOBILE MENU -->
+<nav id="mobileMenu" class="hidden fixed top-[80px] left-0 w-full bg-white border-t shadow-lg z-40">
+  <div class="px-6 py-6 flex flex-col gap-4 text-lg font-semibold">
+
+    <!-- MOBILE HOME DROPDOWN -->
+    <button onclick="toggleMobileDrop()" class="flex items-center justify-between w-full">
+      <span>Home</span>
+      <i class="fa-solid fa-chevron-down text-sm"></i>
+    </button>
+
+    <div id="mobileHomeDrop" class="hidden pl-4">
+      <a href="index.html" class="block py-2">Home 1</a>
+      <a href="home2.html" class="block py-2">Home 2</a>
+    </div>
+
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="insights.html">Insights</a>
+    <a href="contact.html">Contact</a>
+
+    <!-- MOBILE LOGIN -->
+    <a href="login.html" class="text-blue-600 font-semibold">Login</a>
+  </div>
+</nav>
+
+<script>
+  function toggleMobileDrop() {
+    document.getElementById("mobileHomeDrop").classList.toggle("hidden");
+  }
+</script>
+
+
+<!-- OUR MISSION / VISION -->
+<section class="py-24 bg-gray-50 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+
+    <!-- Mission -->
+    <div data-animate class="p-10 bg-white rounded-3xl shadow-xl border border-gray-100">
+      <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
+      <p class="text-gray-600 leading-relaxed">
+        To empower businesses with modern digital transformation solutions  
+        that are visually stunning, technologically powerful, and built for scalability.
+      </p>
+    </div>
+
+    <!-- Vision -->
+    <div data-animate class="p-10 bg-white rounded-3xl shadow-xl border border-gray-100">
+      <h3 class="text-3xl font-bold mb-4">Our Vision</h3>
+      <p class="text-gray-600 leading-relaxed">
+        To become the most trusted premium digital innovation studio,  
+        crafting world-class experiences for businesses of all sizes.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CORE VALUES – PREMIUM GRID -->
+<section class="py-28 px-6">
+  <div class="max-w-4xl mx-auto text-center mb-16">
+    <h2 class="text-4xl font-bold" data-animate>Our Core Values</h2>
+    <p class="mt-4 text-gray-600" data-animate>
+      What drives our creativity, innovation, and long-term partnerships.
+    </p>
+  </div>
+
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+
+    <!-- Value 1 -->
+    <div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-lightbulb"></i></div>
+      <h3 class="text-xl font-bold mb-2">Innovation First</h3>
+      <p class="text-gray-600">We build what’s next, not what’s common.</p>
+    </div>
+
+    <!-- Value 2 -->
+    <div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-star"></i></div>
+      <h3 class="text-xl font-bold mb-2">Premium Quality</h3>
+      <p class="text-gray-600">Every detail is crafted with purpose and precision.</p>
+    </div>
+
+    <!-- Value 3 -->
+    <div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-handshake"></i></div>
+      <h3 class="text-xl font-bold mb-2">Long-Term Partnership</h3>
+      <p class="text-gray-600">We grow with you — not just build for you.</p>
+    </div>
+
+    <!-- Value 4 -->
+    <div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-rocket"></i></div>
+      <h3 class="text-xl font-bold mb-2">Future-Ready Solutions</h3>
+      <p class="text-gray-600">Everything we build is designed for long-term scale.</p>
+    </div>
+
+    <!-- Value 5 -->
+    <div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-users"></i></div>
+      <h3 class="text-xl font-bold mb-2">Client-Centered</h3>
+      <p class="text-gray-600">Your goals lead everything we design and build.</p>
+    </div>
+
+    <!-- Value 6 -->
+    <div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-shield"></i></div>
+      <h3 class="text-xl font-bold mb-2">Integrity & Trust</h3>
+      <p class="text-gray-600">Honesty is the foundation of every project we deliver.</p>
+    </div>
+    <!-- Value 7 -->
+<div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+  <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-chart-line"></i></div>
+  <h3 class="text-xl font-bold mb-2">Results Driven</h3>
+  <p class="text-gray-600">Everything we deliver is focused on measurable growth.</p>
+</div>
+
+<!-- Value 8 -->
+<div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+  <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-brain"></i></div>
+  <h3 class="text-xl font-bold mb-2">Smart Problem Solving</h3>
+  <p class="text-gray-600">We analyze, refine, and design with intelligence and clarity.</p>
+</div>
+
+<!-- Value 9 -->
+<div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+  <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-layer-group"></i></div>
+  <h3 class="text-xl font-bold mb-2">Design with Purpose</h3>
+  <p class="text-gray-600">Every element has meaning — no waste, no noise.</p>
+</div>
+
+<!-- Value 10 -->
+<div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+  <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-code"></i></div>
+  <h3 class="text-xl font-bold mb-2">Clean Engineering</h3>
+  <p class="text-gray-600">We prioritize performance, scalability, and maintainability.</p>
+</div>
+
+<!-- Value 11 -->
+<div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+  <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-earth-asia"></i></div>
+  <h3 class="text-xl font-bold mb-2">Global Standards</h3>
+  <p class="text-gray-600">Our work meets world-class professional benchmarks.</p>
+</div>
+
+<!-- Value 12 -->
+<div data-animate class="p-10 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+  <div class="text-4xl mb-4 text-[#7e079b]"><i class="fa-solid fa-gem"></i></div>
+  <h3 class="text-xl font-bold mb-2">Premium Experience</h3>
+  <p class="text-gray-600">We create high-end digital experiences people remember.</p>
+</div>
+
+
+  </div>
+</section>
+
+
+<!-- TEAM SECTION (Premium Minimal) -->
+<section class="py-28 bg-gray-50 px-6">
+  <div class="max-w-4xl mx-auto text-center mb-16">
+    <h2 class="text-4xl font-bold" data-animate>Meet Our Team</h2>
+    <p class="mt-4 text-gray-600" data-animate>
+      A team of designers, engineers, strategists & innovators.
+    </p>
+  </div>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+
+    <div data-animate class="bg-white p-10 rounded-3xl shadow-xl border text-center">
+      <img src="abtpg1.webp" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg">
+      <h3 class="text-xl font-bold">Arun Kumar</h3>
+      <p class="text-gray-500 text-sm">Founder & CEO</p>
+    </div>
+
+    <div data-animate class="bg-white p-10 rounded-3xl shadow-xl border text-center">
+      <img src="abtpf3.webp" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg">
+      <h3 class="text-xl font-bold">Priya Sharma</h3>
+      <p class="text-gray-500 text-sm">Lead Designer</p>
+    </div>
+
+    <div data-animate class="bg-white p-10 rounded-3xl shadow-xl border text-center">
+      <img src="abtpg2.webp" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg">
+      <h3 class="text-xl font-bold">Rahul Mehta</h3>
+      <p class="text-gray-500 text-sm">Head of Development</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- ⭐ YOUR EXISTING FOOTER (DO NOT CHANGE) -->
+   <!-- FOOTER FIXED -->
+<footer class="bg-[#0c0016] text-gray-300 py-16 px-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-3 gap-12 items-start text-center md:text-left">
+
+      <!-- LEFT -->
+      <div>
+        <img src="logo.webp" class="w-20 mx-auto md:mx-0 mb-3" />
+        <h3 class="text-2xl font-bold text-white"></h3>
+        <p class="mt-3 text-gray-400 text-sm leading-relaxed">
+          Get your business engaged
+        </p>
+      </div>
+
+      <!-- CENTER -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h5 class="text-xl font-semibold text-white mb-4 tracking-wide">Main</h5>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="about.html" class="hover:text-white">About us</a></li>
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="aboutus.html" class="hover:text-white">Dashboard</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Socia</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><i class="fa-brands fa-facebook mr-2"></i> <a href="404.html" class="hover:text-white">Facebook</a></li>
+          <li><i class="fa-brands fa-twitter mr-2"></i> <a href="404.html" class="hover:text-white">Twitter</a></li>
+          <li><i class="fa-brands fa-linkedin mr-2"></i> <a href="404.html" class="hover:text-white">LinkedIn</a></li>
+          <li><i class="fa-brands fa-instagram mr-2"></i> <a href="404.html" class="hover:text-white">Instagram</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-6">
+      © Stackly – 2025. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+
+
+
+  <!-- CLEAN JS (ONLY ONE SCRIPT) -->
+  <script>
+    const btn = document.getElementById("hamburgerBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      document.body.style.overflow = menu.classList.contains("hidden") ? "auto" : "hidden";
+    });
+
+    const elements = document.querySelectorAll("[data-animate]");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach((el) => observer.observe(el));
+  </script>
+
+
+</body>
+</html>
+
+  <!-- paste your real footer here -->
+
+  <!-- SCROLL ANIMATION + HAMBURGER -->
+  <script>
+    const items = document.querySelectorAll("[data-animate]");
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("visible");
+      });
+    }, {threshold: 0.2});
+    items.forEach(i => obs.observe(i));
+
+    // if your hamburger needs JS:
+    const btn = document.getElementById("hamburgerBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    }
+  const items = document.querySelectorAll("[data-animate]");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        entry.target.style.transitionDelay = (Math.random() * 0.3) + "s";
+      }
+    });
+  }, { threshold: 0.2 });
+
+  items.forEach(i => observer.observe(i));
+</script>
+
+<style>
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.7s cubic-bezier(.25,.8,.25,1);
+  }
+  .visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+  </script>
+
+</body>
+</html>

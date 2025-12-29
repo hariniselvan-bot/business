@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stackly contact</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    .header {
+      background: #7e079b;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s ease;
+    }
+
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* NEW */
+  text-align: center;      /* NEW */
+}
+
+.hero .hero-inner {
+  max-width: 780px;        /* cleaner centered width */
+  margin: 0 auto;
+}
+.site-logo {
+  margin-left: 0;     /* ensures it's aligned left */
+}
+
+header.site-header .container {
+  justify-content: space-between; /* keep nav on right */
+}
+
+@media (min-width: 768px){
+  .site-logo {
+    transform: translateX(-10px); /* slightly more left */
+  }
+}
+.hero [data-animate] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: all .9s ease;
+}
+
+.hero [data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+  
+    .hero-bg {
+      background: url('hp1bg.webp') center/cover no-repeat;
+    }
+    .btn-get-started {
+  background: #00cccc;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-get-started:hover {
+  background: #009999;
+  transform: scale(1.05);
+}
+.card-img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+/* Fade + Slide + Scale animation */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger animation */
+[data-animate]:nth-child(1) { transition-delay: 0.1s; }
+[data-animate]:nth-child(2) { transition-delay: 0.2s; }
+[data-animate]:nth-child(3) { transition-delay: 0.3s; }
+[data-animate]:nth-child(4) { transition-delay: 0.4s; }
+[data-animate]:nth-child(5) { transition-delay: 0.5s; }
+[data-animate]:nth-child(6) { transition-delay: 0.6s; }
+
+/* Hover animation on cards */
+.service-card, .insight-card {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.service-card:hover, 
+.insight-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Footer social buttons */
+.social-btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.social-btn:hover {
+  background: #00cccc;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px #00cccc;
+}
+
+.btn-get-started {
+  transition: 0.35s ease;
+}
+
+.btn-get-started:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+}
+.hero {
+  animation: slowzoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes slowzoom {
+  from { background-size: 100%; }
+  to   { background-size: 108%; }
+}
+
+
+
+  </style>
+</head>
+
+<body class="font-sans bg-gray-50">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>STACKLY</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- FIXED FONT AWESOME (YOU WERE USING WRONG VERSION) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+  /* Make hamburger always visible */
+  #hamburgerBtn i {
+    color: #000 !important;
+    font-size: 28px !important;
+  }
+</style>
+
+</head>
+<body>
+
+<body class="font-sans bg-gray-50">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Home 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#0c0f1c;
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header-wrapper{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+}
+
+.header{
+  width:calc(100% - 60px);
+  max-width:1400px;
+  height:96px;
+  padding:0 34px;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+/* LOGO */
+.logo img{
+  height:52px;
+}
+
+/* DESKTOP NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-weight:600;
+}
+
+.nav a{
+  color:#000000;
+  text-decoration:none;
+}
+.nav a:hover,
+.active{
+  color:#22d3ee;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:140%;
+  left:0;
+  background:#ffffff;
+  border-radius:14px;
+  min-width:160px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  font-size:14px;
+}
+
+/* LOGIN */
+.login-btn{
+  background:#2279e4;
+  color:#000000;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.2);
+}
+.hamburger i{
+  font-size:22px;
+  color:#000000;
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:110px;
+  left:20px;
+  right:20px;
+  background:rgba(255, 255, 255, 0.92);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:24px;
+  display:none;
+  z-index:999;
+}
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu a,
+.mobile-drop-btn{
+  display:block;
+  width:100%;
+  padding:12px 0;
+  color:#000000;
+  background:none;
+  border:none;
+  text-align:left;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* MOBILE DROPDOWN */
+.mobile-drop{
+  display:none;
+  padding-left:14px;
+}
+.mobile-drop.open{
+  display:block;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 6% 0;
+  overflow:hidden;
+}
+
+/* BG IMAGE (DESKTOP) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0.12)),
+    url("bg.webp");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(1.1) contrast(1.1) saturate(1.05);
+  z-index:0;
+}
+
+/* CURVE MASK (DESKTOP) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-12%;
+  width:55%;
+  height:100%;
+  background:inherit;
+  clip-path:ellipse(85% 100% at 100% 50%);
+  z-index:1;
+}
+
+/* DOTS */
+.dots{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(
+    rgba(255,255,255,0.18) 1px,
+    transparent 1px
+  );
+  background-size:22px 22px;
+  opacity:.14;
+  z-index:2;
+}
+
+/* HERO CONTENT */
+.hero-left{
+  max-width:650px;
+  position:relative;
+  z-index:3;
+}
+
+.hero-left small{
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+.hero-title{
+  font-size:52px;
+  margin:20px 0;
+  line-height:1.2;
+}
+
+.animate-text{
+  color:#ff5c2d;
+  display:inline-block;
+  animation:scaleFade 2.5s infinite;
+}
+
+.hero-btn{
+  background:#ff5c2d;
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TEXT ANIMATION */
+@keyframes scaleFade{
+  0%{transform:scale(.6);opacity:0}
+  40%{transform:scale(1);opacity:1}
+  100%{opacity:0}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1117px){
+  .nav{display:none}
+  .hamburger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    padding:120px 8% 0;
+    text-align:center;
+  }
+
+  /* MOBILE BG */
+  .hero::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),
+      url("bg.webp");
+    background-size:cover;
+    background-position:top center;
+  }
+
+  .hero::after{
+    display:none;
+  }
+
+  .hero-left{
+    margin:auto;
+  }
+
+  .hero-title{
+    font-size:36px;
+  }
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
+<div class="header-wrapper">
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="logo.webp" alt="Stackly">
+    </a>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="index.html">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="home2.html">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="aboutus.html">Dashboard</a>
+      <a href="contact.html"class="nav-link"
+   style="color:#2563eb; font-weight:700;">Contact</a>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-drop-btn" id="mobileDropBtn">
+    Home <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="mobile-drop" id="mobileDrop">
+    <a href="home2.html">Home 2</a>
+  </div>
+
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="aboutus.html">Dashboard</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" style="color:#1150bd">LOGIN</a>
+</div>
+
+<script>
+/* MOBILE MENU */
+const hamburgerBtn=document.getElementById("hamburgerBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const mobileDropBtn=document.getElementById("mobileDropBtn");
+const mobileDrop=document.getElementById("mobileDrop");
+
+hamburgerBtn.onclick=()=>mobileMenu.classList.toggle("open");
+mobileDropBtn.onclick=()=>mobileDrop.classList.toggle("open");
+
+/* HERO TEXT LOOP */
+const words=["Talent","Team","Experts","Leaders"];
+let i=0;
+const t=document.getElementById("txt");
+
+setInterval(()=>{
+  i=(i+1)%words.length;
+  t.textContent=words[i];
+},2500);
+</script>
+
+<style>
+  .active {
+    color: #2563eb !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 8px rgba(37, 99, 235, 0.6),
+                 0 0 12px rgba(37, 99, 235, 0.4);
+  }
+</style>  
+<script>
+    // Auto Active Menu Highlight
+    const currentPage = window.location.pathname.split("/").pop();
+    const links = document.querySelectorAll(".nav-link");
+
+    links.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
+</script>
+
+<!-- MOBILE MENU -->
+<nav id="mobileMenu" class="hidden fixed top-[80px] left-0 w-full bg-white border-t shadow-lg z-40">
+  <div class="px-6 py-6 flex flex-col gap-4 text-lg font-semibold">
+
+  
+    <!-- MOBILE HOME DROPDOWN -->
+<button onclick="toggleMobileDrop()" class="flex items-center justify-between w-full">
+  <span>Home</span>
+  <i class="fa-solid fa-chevron-down text-sm"></i>
+</button>
+
+<div id="mobileHomeDrop" class="hidden pl-4">
+  <a href="home2.html" class="block py-2">Home 2</a>
+</div>
+
+
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="aboutus.html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+
+    <!-- MOBILE LOGIN -->
+    <a href="login.html" class="text-blue-600 font-semibold">Login</a>
+  </div>
+</nav>
+
+<script>
+  function toggleMobileDrop() {
+    document.getElementById("mobileHomeDrop").classList.toggle("hidden");
+  }
+</script>
+
+
+
+
+<!-- ========== CONTACT PAGE BODY START ========== -->
+
+<style>
+/* PAGE WRAPPER */
+.contact-section {
+    padding: 120px 20px 80px;
+    max-width: 1100px;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Page Title */
+.contact-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .8s ease;
+}
+
+.contact-subtitle {
+    text-align: center;
+    color: #555;
+    max-width: 700px;
+    margin: auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .9s ease;
+}
+
+/* Grid Container */
+.contact-wrapper {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+@media(max-width: 768px){
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Contact Info Box */
+.contact-info-box {
+    padding: 30px;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all .9s ease;
+}
+
+.contact-info-box h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.contact-info-box p {
+    margin-bottom: 12px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.contact-info-box .info-item {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.info-item i {
+    background: #f0faff;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 20px;
+    color: #0099cc;
+}
+
+/* FORM BOX */
+.form-box {
+    padding: 30px;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+}
+
+.form-box input,
+.form-box textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border .3s ease;
+}
+
+.form-box input:focus,
+.form-box textarea:focus {
+    border-color: #00cccc;
+    outline: none;
+}
+
+.form-box button {
+    width: 100%;
+    background: #00cccc;
+    color: #fff;
+    padding: 14px;
+    border: none;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .3s ease;
+}
+
+.form-box button:hover {
+    background: #009999;
+    transform: translateY(-2px);
+}
+
+/* ANIMATION CLASS */
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+</style>
+
+<div class="contact-section">
+
+    <h1 class="contact-title">Get in Touch</h1>
+    <p class="contact-subtitle">
+        We're here to help. Whether you have questions, need support or want to collaborate —
+        reach out and our team will get back to you shortly.
+    </p>
+
+    <div class="contact-wrapper">
+
+        <!-- CONTACT DETAILS -->
+        <div class="contact-info-box animate-item">
+            <h3>Contact Information</h3>
+
+            <p>Feel free to reach us anytime. We usually respond within 24 hours.</p>
+
+            <div class="info-item">
+                <i class="fa-solid fa-phone"></i>
+                <p><b>Phone:</b> +91 70107 92745</p>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-envelope"></i>
+                <p><b>Email:</b> info@thestackly.com</p>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <p><b>Office:</b>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</p>
+            </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="form-box animate-item">
+            <form onsubmit="event.preventDefault(); window.location.href='404.html';">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" rows="6" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+/* Scroll animation */
+const items = document.querySelectorAll(".animate-item, .contact-title, .contact-subtitle");
+
+function animateOnScroll() {
+    items.forEach(el => {
+        const pos = el.getBoundingClientRect().top;
+        if (pos < window.innerHeight - 100) {
+            el.classList.add("visible");
+        }
+    });
+}
+
+window.addEventListener("scroll", animateOnScroll);
+animateOnScroll();
+</script>
+
+<!-- ========== CONTACT PAGE BODY END ========== -->
+ 
+ <footer class="bg-[#0c0016] text-gray-300 py-16 px-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-4 gap-12 items-start text-center md:text-left">
+
+      <!-- LEFT -->
+      <div>
+        <img src="logo.webp" class="w-20 mx-auto md:mx-0 mb-3" />
+        <h3 class="text-2xl font-bold text-white"></h3>
+        <p class="mt-3 text-gray-400 text-sm leading-relaxed">
+          Get your business engaged
+        </p>
+      </div>
+
+      <!-- CENTER (MAIN LINKS) -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Main</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="about.html" class="hover:text-white">About us</a></li>
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="insights.html" class="hover:text-white">Insights</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- SOCIALS -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Social</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><i class="fa-brands fa-facebook mr-2"></i> <a href="404.html" class="hover:text-white">Facebook</a></li>
+          <li><i class="fa-brands fa-twitter mr-2"></i> <a href="404.html" class="hover:text-white">Twitter</a></li>
+          <li><i class="fa-brands fa-linkedin mr-2"></i> <a href="404.html" class="hover:text-white">LinkedIn</a></li>
+          <li><i class="fa-brands fa-instagram mr-2"></i> <a href="404.html" class="hover:text-white">Instagram</a></li>
+        </ul>
+      </div>
+
+      <!-- MAP -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Our location</h4>
+
+        <div class="rounded-lg overflow-hidden shadow-lg">
+          <iframe 
+            width="100%" 
+            height="200" 
+            style="border:0;" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=MMR+Complex,+Salem,+Tamil+Nadu+636008&output=embed">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  hamburgerBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-6">
+      © Stackly – 2025. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>

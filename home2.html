@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glass Header Dark on Scroll</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  /* ACTIVE LINK */
+  .active{
+    color:#60a5fa !important;
+    font-weight:700;
+    text-shadow:0 0 8px rgba(96,165,250,0.6);
+  }
+
+  /* DEFAULT LIGHT GLASS */
+  .glass-header{
+    background:linear-gradient(
+      90deg,
+      rgba(255,255,255,0.35),
+      rgba(255,255,255,0.15)
+    );
+    backdrop-filter:blur(20px);
+    transition:all 0.35s ease;
+  }
+
+  /* DARK GLASS ON SCROLL */
+  .glass-header.scrolled{
+    background:linear-gradient(
+      90deg,
+      rgba(15,23,42,0.75),
+      rgba(30,41,59,0.75)
+    );
+    border-color:rgba(255,255,255,0.15);
+  }
+</style>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- ================= HEADER ================= -->
+<header id="header"
+  class="glass-header fixed top-4 left-1/2 -translate-x-1/2 z-50
+  w-[95%] max-w-7xl
+  h-20 flex items-center
+  rounded-2xl
+  border border-white/30
+  shadow-lg">
+
+  <div class="w-full px-6 flex items-center justify-between h-full">
+
+    <!-- LOGO -->
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.webp" class="w-24 h-24 object-contain" alt="Stackly logo">
+      <span class="font-bold text-xl text-white"></span>
+    </a>
+
+    <!-- DESKTOP MENU -->
+    <nav class="hidden lg:flex items-center gap-8 font-semibold text-white">
+
+      <!-- HOME DROPDOWN -->
+      <div class="relative group">
+        <a href="home2.html" class="flex items-center gap-1 hover:text-blue-400">
+  Home
+  <i class="fa-solid fa-chevron-down text-xs"></i>
+</a>
+
+
+        <div class="absolute bg-white text-black shadow-lg rounded-lg hidden group-hover:block 
+              w-36 top-full pt-3 z-50">
+          <a href="index.html" class="block px-4 py-2 hover:bg-gray-100">Home 1</a>
+        </div>
+      </div>
+
+      <a href="team.html" class="nav-link hover:text-blue-400">Our Team</a>
+      <a href="FAQ.html" class="nav-link hover:text-blue-400">FAQ</a>
+      <a href="insights.html" class="nav-link hover:text-blue-400">Insights</a>
+      <a href="contact.html" class="nav-link hover:text-blue-400">Contact</a>
+
+      <!-- LOGIN -->
+      <a href="login.html"
+         class="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+        Login
+      </a>
+    </nav>
+
+    <!-- MOBILE HAMBURGER -->
+    <button id="hamburgerBtn" class="lg:hidden text-2xl text-white">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </div>
+</header>
+
+<!-- ================= MOBILE MENU ================= -->
+<nav id="mobileMenu"
+  class="hidden fixed top-[96px] left-1/2 -translate-x-1/2
+  w-[95%] max-w-7xl
+  bg-white rounded-2xl shadow-lg z-40">
+
+  <div class="px-6 py-6 flex flex-col gap-4 text-lg font-semibold">
+<div class="flex items-center justify-between w-full">
+  <a href="home2.html" class="font-semibold">Home</a>
+  <button onclick="toggleMobileDrop()" class="p-2">
+    <i class="fa-solid fa-chevron-down text-sm"></i>
+  </button>
+</div>
+
+    <div id="mobileHomeDrop" class="hidden pl-4">
+      <a href="index.html" class="block py-2">Home 1</a>
+    </div>
+
+    <a href="team.html">Our Team</a>
+    <a href="FAQ.html">FAQ</a>
+    <a href="insights.html">Insights</a>
+    <a href="contact.html">Contact</a>
+
+    <a href="login.html" class="text-blue-600 font-semibold">Login</a>
+  </div>
+</nav>
+
+<!-- ================= SCRIPTS ================= -->
+<script>
+  /* ACTIVE PAGE */
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-link").forEach(link => {
+    if(link.getAttribute("href") === currentPage){
+      link.classList.add("active");
+    }
+  });
+
+  /* MOBILE MENU */
+  document.getElementById("hamburgerBtn").addEventListener("click", () => {
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+  });
+
+  function toggleMobileDrop(){
+    document.getElementById("mobileHomeDrop").classList.toggle("hidden");
+  }
+
+  /* DARK GLASS ON SCROLL */
+  const header = document.getElementById("header");
+
+  window.addEventListener("scroll", () => {
+    if(window.scrollY > 40){
+      header.classList.add("scrolled");
+    }else{
+      header.classList.remove("scrolled");
+    }
+  });
+</script>
+
+
+<style>
+/* HERO BACKGROUND */
+.hero{
+  min-height:100vh;
+  background:
+    linear-gradient(90deg, rgba(3,20,23,0.9), rgba(3,20,23,0.5)),
+    url("bg1.jpg") center/cover no-repeat;
+
+  display:flex;
+  align-items:center;       /* vertical center */
+  justify-content:center;   /* horizontal center */
+  text-align:center;        /* center text */
+}
+
+
+/* INLINE IMAGE INSIDE TEXT */
+.inline-img{
+  width:72px;
+  height:48px;
+  object-fit:cover;
+  border-radius:8px;
+  display:inline-block;
+  vertical-align:middle;
+  margin:0 10px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  transition:opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* FADE ANIMATION */
+.fade{
+  animation:fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+
+  <div class="max-w-3xl text-white">
+
+    <h1 id="heroText" class="text-5xl md:text-6xl font-bold leading-tight fade">
+      Expert Solutions for
+      <img id="heroImg" src="hp1of12.webp" class="inline-img">
+      Modern Enterprises.
+    </h1>
+
+    <p class="mt-6 text-lg text-gray-200 max-w-xl">
+      We build scalable, intelligent, and innovative digital solutions
+      that help businesses grow faster.
+    </p>
+
+    <a href="contact.html"
+       class="inline-flex items-center gap-3 mt-8 px-6 py-3 bg-teal-500
+              hover:bg-teal-600 rounded-full text-white font-semibold transition">
+      Get Started Now
+      <span class="bg-black/20 rounded-full p-2">→</span>
+    </a>
+
+  </div>
+
+</section>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+/* WORD + IMAGE LOOP DATA */
+const slides = [
+  {
+    text: "Smart Businesses.",
+    img: "hp1.webp"
+  },
+  {
+    text: "Growing Startups.",
+    img: "ip4.webp"
+  },
+  {
+    text: "Global Enterprises.",
+    img: "ip1.webp"
+  }
+];
+
+let index = 0;
+
+const heroText = document.getElementById("heroText");
+const heroImg = document.getElementById("heroImg");
+
+setInterval(() => {
+  index = (index + 1) % slides.length;
+
+  heroText.classList.remove("fade");
+  void heroText.offsetWidth; // restart animation
+  heroText.classList.add("fade");
+
+  heroImg.src = slides[index].img;
+
+  heroText.innerHTML = `
+    Expert Solutions for
+    <img src="${slides[index].img}" class="inline-img">
+    ${slides[index].text}
+  `;
+}, 3500);
+</script>
+<!-- ================= HOW CAN WE HELP ================= -->
+<section class="help-section">
+  <div class="help-overlay"></div>
+
+  <div class="help-content">
+    <h2>HOW CAN WE HELP?</h2>
+    <span class="underline"></span>
+
+    <p>
+      At Stackly, we’re here to support businesses like yours with a wide
+      range of smart digital solutions. From expert guidance and powerful
+      tools to practical resources, we help you grow, adapt, and succeed
+      in a competitive market.
+    </p>
+
+    <p>
+      By partnering with us, you gain access to time-saving solutions,
+      innovative strategies, and ongoing support designed to strengthen
+      your business journey and unlock new opportunities.
+    </p>
+
+    <div class="help-buttons">
+      <a href="contact.html" class="btn primary">View Benefits</a>
+      <a href="login.html" class="btn secondary">Join Now</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ================= HELP SECTION ================= */
+.help-section{
+  position:relative;
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:url("bg.jpg")
+             center/cover no-repeat;
+  color:#fff;
+  padding:80px 6%;
+}
+
+/* DARK OVERLAY */
+.help-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(5,25,35,0.9),
+    rgba(5,25,35,0.65)
+  );
+}
+
+/* CONTENT */
+.help-content{
+  position:relative;
+  max-width:900px;
+  text-align:center;
+  z-index:1;
+}
+
+.help-content h2{
+  font-size:32px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.help-content .underline{
+  display:block;
+  width:70px;
+  height:3px;
+  background:#1dd3c0;
+  margin:14px auto 30px;
+}
+
+.help-content p{
+  font-size:16px;
+  line-height:1.8;
+  color:#e5e7eb;
+  margin-bottom:20px;
+}
+
+/* BUTTONS */
+.help-buttons{
+  margin-top:35px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.help-buttons .btn{
+  padding:12px 28px;
+  border-radius:6px;
+  font-weight:600;
+  font-size:14px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.help-buttons .primary{
+  background:#2563eb;
+  color:#fff;
+}
+
+.help-buttons .primary:hover{
+  background:#1d4ed8;
+}
+
+.help-buttons .secondary{
+  background:#1dd3c0;
+  color:#022c2a;
+}
+
+.help-buttons .secondary:hover{
+  background:#14b8a6;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .help-content h2{
+    font-size:26px;
+  }
+
+  .help-content p{
+    font-size:15px;
+  }
+}
+</style>
+<!-- ================= LATEST ARTICLES ================= -->
+<section class="articles-section">
+  <h2 class="articles-title">LATEST ARTICLES</h2>
+
+  <div class="article-wrapper">
+
+    <!-- PREV -->
+    <button class="nav-btn left" onclick="prevArticle()">❮</button>
+
+    <!-- ARTICLE CARD -->
+    <div class="article-card" id="articleCard">
+      <div class="article-img">
+        <img id="articleImg" src="hp2.06.webp" alt="">
+      </div>
+
+      <div class="article-content">
+        <h3 id="articleTitle">
+          Navigating Home-Based Zoning Laws for Small Business Owners
+        </h3>
+
+        <p id="articleText">
+          Thinking about starting a home-based business? You’re not alone.
+          This guide breaks down zoning rules you need to know to avoid
+          common hurdles and stay compliant.
+        </p>
+
+        <a href="contact.html" class="read-btn">READ MORE</a>
+      </div>
+    </div>
+
+    <!-- NEXT -->
+    <button class="nav-btn right" onclick="nextArticle()">❯</button>
+
+  </div>
+</section>
+
+<style>
+/* ================= ARTICLES SECTION ================= */
+.articles-section{
+  padding:90px 6%;
+  background:#f9fafb;
+  text-align:center;
+}
+
+.articles-title{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:40px;
+  letter-spacing:1px;
+}
+
+/* WRAPPER */
+.article-wrapper{
+  position:relative;
+  max-width:1100px;
+  margin:0 auto;
+}
+
+/* CARD */
+.article-card{
+  background:#fff;
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:40px;
+  padding:40px;
+  border-radius:6px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+  align-items:center;
+  transition:opacity 0.4s ease, transform 0.4s ease;
+}
+
+.article-card.fade{
+  opacity:0;
+  transform:translateX(30px);
+}
+
+/* IMAGE */
+.article-img img{
+  width:100%;
+  max-height:280px;
+  object-fit:contain;
+}
+
+/* CONTENT */
+.article-content h3{
+  font-size:26px;
+  color:#1d4ed8;
+  margin-bottom:16px;
+}
+
+.article-content p{
+  font-size:16px;
+  line-height:1.7;
+  color:#374151;
+  margin-bottom:24px;
+}
+
+/* BUTTON */
+.read-btn{
+  display:inline-block;
+  padding:12px 26px;
+  background:#1d4ed8;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  border-radius:4px;
+}
+
+/* NAV BUTTONS */
+.nav-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  font-size:36px;
+  color:#1d4ed8;
+  cursor:pointer;
+  padding:10px;
+}
+
+.nav-btn.left{ left:-50px; }
+.nav-btn.right{ right:-50px; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .article-card{
+    grid-template-columns:1fr;
+    text-align:left;
+  }
+  .nav-btn{
+    display:none;
+  }
+}
+</style>
+
+<script>
+/* ================= ARTICLE DATA ================= */
+const articles = [
+  {
+    img: "hp1of7.webp",
+    title: "Navigating Home-Based Zoning Laws for Small Business Owners",
+    text: "Thinking about starting a home-based business? You’re not alone. This guide breaks down zoning rules you need to know to avoid common hurdles."
+  },
+  {
+    img: "hp1of6.webp",
+    title: "How Digital Tools Help Small Businesses Grow Faster",
+    text: "Discover how modern digital platforms streamline operations, improve customer engagement, and drive sustainable growth."
+  },
+  {
+    img: "hp1of13.webp",
+    title: "Managing Your Time Effectively as a Business Owner",
+    text: "Learn proven time-management strategies to stay productive, focused, and ahead in your entrepreneurial journey."
+  }
+];
+
+let currentIndex = 0;
+
+const card = document.getElementById("articleCard");
+const img = document.getElementById("articleImg");
+const title = document.getElementById("articleTitle");
+const text = document.getElementById("articleText");
+
+function updateArticle(){
+  card.classList.add("fade");
+
+  setTimeout(() => {
+    img.src = articles[currentIndex].img;
+    title.textContent = articles[currentIndex].title;
+    text.textContent = articles[currentIndex].text;
+    card.classList.remove("fade");
+  }, 300);
+}
+
+function nextArticle(){
+  currentIndex = (currentIndex + 1) % articles.length;
+  updateArticle();
+}
+
+function prevArticle(){
+  currentIndex = (currentIndex - 1 + articles.length) % articles.length;
+  updateArticle();
+}
+</script>
+<!-- ================= FEATURED MEMBER BENEFITS ================= -->
+<section class="benefits-section">
+  <h2 class="benefits-title">FEATURED MEMBER BENEFITS</h2>
+
+  <div class="emoji-slider">
+    <div class="emoji-track">
+
+      <!-- BENEFIT CARDS -->
+      <div class="emoji-card">
+        <span class="emoji">🩺</span>
+        <p>Health Support</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">⚖️</span>
+        <p>Legal Assistance</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">📧</span>
+        <p>Email Marketing</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">💊</span>
+        <p>Prescription Savings</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">🏡</span>
+        <p>Home Rewards</p>
+      </div>
+
+      <!-- DUPLICATE FOR LOOP -->
+      <div class="emoji-card">
+        <span class="emoji">🩺</span>
+        <p>Health Support</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">⚖️</span>
+        <p>Legal Assistance</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">📧</span>
+        <p>Email Marketing</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">💊</span>
+        <p>Prescription Savings</p>
+      </div>
+
+      <div class="emoji-card">
+        <span class="emoji">🏡</span>
+        <p>Home Rewards</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* ================= SECTION ================= */
+.benefits-section{
+  padding:90px 0;
+  background:#fff;
+  text-align:center;
+  overflow:hidden;
+}
+
+.benefits-title{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:50px;
+  letter-spacing:1px;
+}
+
+/* SLIDER */
+.emoji-slider{
+  width:100%;
+  overflow:hidden;
+}
+
+.emoji-track{
+  display:flex;
+  width:max-content;
+  animation:scroll 22s linear infinite;
+}
+
+.emoji-slider:hover .emoji-track{
+  animation-play-state:paused;
+}
+
+/* CARD */
+.emoji-card{
+  min-width:260px;
+  height:120px;
+  margin:0 15px;
+  background:#ffffff;
+  border-radius:16px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  transition:transform 0.3s ease;
+}
+
+.emoji-card:hover{
+  transform:translateY(-6px);
+}
+
+/* EMOJI */
+.emoji{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+/* TEXT */
+.emoji-card p{
+  font-size:16px;
+  font-weight:600;
+  color:#1f2937;
+}
+
+/* LOOP ANIMATION */
+@keyframes scroll{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .emoji-card{
+    min-width:220px;
+    height:110px;
+  }
+}
+</style>
+
+<!-- ================= MEMBER DIRECTORY ================= -->
+<section class="directory-section">
+  <div class="directory-container">
+
+    <!-- LEFT CONTENT -->
+    <div class="directory-text">
+      <h2>Member Directory</h2>
+
+      <p class="desc">
+        Spotlight local businesses with a searchable directory.
+        Help members connect and give the public an easy way
+        to discover who you represent.
+      </p>
+
+      <h4>Key Features:</h4>
+
+      <ul class="features">
+        <li>✔ Contact Information</li>
+        <li>✔ Business Type</li>
+        <li>✔ Location</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="directory-image">
+      <img
+        src="hp1of8.webp"
+        alt="Business Directory Preview">
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ================= DIRECTORY SECTION ================= */
+.directory-section{
+  padding:100px 6%;
+  background:#ffffff;
+}
+
+.directory-container{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+/* LEFT */
+.directory-text h2{
+  font-size:48px;
+  font-weight:800;
+  color:#0f172a;
+  margin-bottom:20px;
+}
+
+.directory-text .desc{
+  font-size:18px;
+  line-height:1.7;
+  color:#334155;
+  max-width:500px;
+  margin-bottom:30px;
+}
+
+.directory-text h4{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:18px;
+  color:#0f172a;
+}
+
+.features{
+  list-style:none;
+  padding:0;
+}
+
+.features li{
+  font-size:17px;
+  margin-bottom:14px;
+  color:#1e293b;
+}
+
+/* RIGHT IMAGE */
+.directory-image{
+  display:flex;
+  justify-content:center;
+}
+
+.directory-image img{
+  width:100%;
+  max-width:520px;
+  border-radius:14px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .directory-container{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .directory-text .desc{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .features{
+    display:inline-block;
+    text-align:left;
+  }
+}
+</style>
+<!-- ================= MEMBER BENEFITS ================= -->
+<section class="member-benefits">
+  <div class="benefits-overlay"></div>
+
+  <div class="benefits-container">
+
+    <!-- LEFT : LAPTOP IMAGE -->
+    <div class="benefits-image">
+      <img
+        src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04"
+        alt="Membership Benefits Preview">
+    </div>
+
+    <!-- RIGHT : CONTENT -->
+    <div class="benefits-content">
+      <h2>Member Benefits</h2>
+
+      <p class="desc">
+        Clearly present membership benefits, pricing, and how to join
+        so potential members know exactly what they’re getting and how
+        to get started. No confusion, no extra steps.
+      </p>
+
+      <h4>Key Features:</h4>
+
+      <ul class="benefits-list">
+        <li>✔ Easy Sign-Up or Contact Path</li>
+        <li>✔ Benefits Breakdown</li>
+        <li>✔ Transparent Pricing</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ================= MEMBER BENEFITS ================= */
+.member-benefits{
+  position:relative;
+  padding:110px 6%;
+  background:
+    url("bg.jpg") center/cover no-repeat; /* ← add your bg here */
+}
+
+.benefits-overlay{
+  position:absolute;
+  inset:0;
+}
+
+.benefits-container{
+  position:relative;
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:70px;
+  align-items:center;
+  z-index:1;
+}
+
+/* IMAGE */
+.benefits-image img{
+  width:100%;
+  max-width:520px;
+  border-radius:16px;
+  box-shadow:0 30px 70px rgba(0,0,0,0.25);
+}
+
+/* CONTENT */
+.benefits-content h2{
+  font-size:46px;
+  font-weight:800;
+  color:#ffffff;
+  margin-bottom:22px;
+}
+
+.benefits-content .desc{
+  font-size:18px;
+  line-height:1.7;
+  color:#ffffff;
+  max-width:520px;
+  margin-bottom:32px;
+}
+
+.benefits-content h4{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:18px;
+  color:#ffffff;
+}
+
+.benefits-list{
+  list-style:none;
+  padding:0;
+}
+
+.benefits-list li{
+  font-size:17px;
+  margin-bottom:14px;
+  color:#fafcff;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .benefits-container{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .benefits-image{
+    order:2;
+  }
+
+  .benefits-content .desc{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .benefits-list{
+    display:inline-block;
+    text-align:left;
+  }
+}
+.footer-logo{
+  width:140px;        /* adjust if needed */
+  height:auto;
+  object-fit:contain;
+}
+
+</style>
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <!-- LEFT : LOGO & TAGLINE -->
+    <div class="logo">
+  <img src="logo.webp" alt="Stackly Logo" class="footer-logo">
+</div>
+
+
+    <div class="divider"></div>
+
+    <!-- MIDDLE : MAIN LINKS -->
+    <div class="footer-links">
+      <h4>Main</h4>
+      <ul>
+        <li><a href="home2.html">Home</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="FAQ.html">FAQ</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- RIGHT : SOCIAL -->
+    <div class="footer-social">
+      <h4>Social</h4>
+      <ul>
+        <li><i class="fa-brands fa-facebook mr-2"></i> <a href="404.html" class="hover:text-white">Facebook</a></li>
+          <li><i class="fa-brands fa-twitter mr-2"></i> <a href="404.html" class="hover:text-white">Twitter</a></li>
+          <li><i class="fa-brands fa-linkedin mr-2"></i> <a href="404.html" class="hover:text-white">LinkedIn</a></li>
+          <li><i class="fa-brands fa-instagram mr-2"></i> <a href="404.html" class="hover:text-white">Instagram</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    © Stackly – 2025. All rights reserved.
+  </div>
+
+</footer>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* ================= FOOTER ================= */
+.footer{
+  background:radial-gradient(circle at top, #1b0b2e, #0b0216);
+  color:#cbd5e1;
+  padding:80px 6% 30px;
+}
+
+/* CONTAINER */
+.footer-container{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:50px;
+  align-items:start;
+}
+
+/* BRAND */
+.footer-brand .logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.logo-icon{
+  width:34px;
+  height:34px;
+  background:#22c55e;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#022c22;
+  font-weight:800;
+}
+
+.logo-text{
+  font-size:22px;
+  font-weight:800;
+  color:#ffffff;
+}
+
+.footer-brand p{
+  font-size:15px;
+  color:#9ca3af;
+}
+
+/* DIVIDER */
+.divider{
+  width:1px;
+  background:rgba(255,255,255,0.15);
+}
+
+/* LINKS */
+.footer-links h4,
+.footer-social h4{
+  font-size:18px;
+  margin-bottom:16px;
+  color:#ffffff;
+}
+
+.footer-links ul,
+.footer-social ul{
+  list-style:none;
+  padding:0;
+}
+
+.footer-links li,
+.footer-social li{
+  margin-bottom:12px;
+  font-size:15px;
+}
+
+.footer-links a{
+  color:#cbd5e1;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  color:#22c55e;
+}
+
+/* SOCIAL */
+.footer-social i{
+  margin-right:10px;
+  color:#f5fff8;
+}
+
+/* BOTTOM */
+.footer-bottom{
+  margin-top:50px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,0.15);
+  text-align:center;
+  font-size:14px;
+  color:#9ca3af;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-container{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .divider{
+    display:none;
+  }
+
+  .footer{
+    text-align:center;
+  }
+}
+</style>

@@ -1,0 +1,963 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stackly — Services</title>
+
+  <!-- Tailwind (utility helper; we still use custom CSS) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+  <style>
+    
+  body {
+    background: #0c0016;
+    color: white;
+  }
+
+
+    :root{
+      --accent: #00cccc;
+      --accent-dark: #009999;
+      --bg: #ffffff;
+      --muted: #6b7280;
+      --dark-bg: #0c0016;
+      --anim-duration: .9s;
+    }
+    html,body { height:100%; }
+    body { font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#0b1220; -webkit-font-smoothing:antialiased; }
+
+    /* ---------- Header (copied & slightly refined) ---------- */
+    header.site-header{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 60;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+      transition: padding 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+    }
+    header.site-header .container{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    header.site-header.shrink .container{ padding: 8px 20px; }
+
+    /* Logo */
+    .site-logo { display:flex; align-items:center; gap:12px; }
+    .site-logo img { width:48px; height:48px; object-fit:cover; border-radius:10px; box-shadow: 0 6px 18px rgba(2,6,23,0.06); }
+    .site-logo .brand { font-weight:800; font-size:18px; letter-spacing:0.4px; color:#0b1220; }
+
+    /* Nav */
+    nav.primary { display:flex; gap:22px; align-items:center; }
+    nav.primary a { color:#152238; text-decoration:none; font-weight:600; transition: color .18s ease; }
+    nav.primary a:hover { color:var(--accent); }
+
+    .header-cta { display:inline-block; padding:9px 18px; border-radius:10px; background:var(--accent); color:#fff; font-weight:700; box-shadow: 0 8px 30px rgba(0,204,204,0.08); transition: transform .28s ease, box-shadow .28s ease; }
+    .header-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,204,204,0.12); background:var(--accent-dark); }
+
+    /* Mobile hamburger */
+    .hamburger { display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:8px; background:transparent; border:1px solid rgba(16,24,40,0.06); cursor:pointer; }
+    .hamburger svg { transition: transform .2s ease; }
+    .hamburger.open svg { transform: rotate(90deg); }
+
+    /* Mobile menu */
+    #mobileMenu { position: fixed; left:0; right:0; top:72px; background:var(--bg); z-index:55; border-top: 1px solid rgba(0,0,0,0.04); box-shadow: 0 18px 40px rgba(2,6,23,0.08); }
+    #mobileMenu .mobile-inner{ padding:18px; display:flex; flex-direction:column; gap:12px; font-weight:700; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 64vh;
+      display:flex;
+      align-items:center;
+      padding:110px 20px 60px;
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0)), url('');
+      background-size: cover;
+      background-position: center;
+      color: #061226;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero .hero-inner { max-width:1100px; margin:0 auto; display:flex; gap:36px; align-items:center; }
+    .hero .left { flex:1; }
+    .hero .right { flex:1; display:flex; justify-content:center; align-items:center; }
+    .hero h1 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height:1.02; font-weight:800; color:#041022; }
+    .hero p { margin-top:16px; color: rgba(6,18,34,0.8); font-weight:500; }
+
+    .hero .btn-get-started { margin-top:22px; display:inline-block; background:var(--accent); color:white; padding:12px 26px; border-radius:12px; text-decoration:none; font-weight:700; transition: transform .28s ease, box-shadow .28s ease; }
+    .hero .btn-get-started:hover { transform: translateY(-4px); box-shadow: 0 12px 34px rgba(0,204,204,0.12); background:var(--accent-dark); }
+
+    .hero .hero-image {
+      width:420px; max-width:46%; border-radius:18px; box-shadow: 0 30px 60px rgba(2,6,23,0.12); overflow:hidden;
+    }
+    .hero .hero-image img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* ---------- Sections ---------- */
+    section { padding-top:48px; padding-bottom:48px; }
+    .container { max-width:1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Services grid */
+    .services-grid { display:grid; grid-template-columns:repeat(1,1fr); gap:20px; }
+    @media(min-width:768px){ .services-grid{ grid-template-columns:repeat(3,1fr); } }
+    .service-card {
+      background:#fff; border-radius:14px; padding:18px; box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+      transition: transform .35s ease, box-shadow .35s ease;
+      display:flex; flex-direction:column; gap:12px; min-height:260px;
+    }
+    .service-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 24px 60px rgba(2,6,23,0.10); }
+    .service-media { height:140px; border-radius:10px; overflow:hidden; }
+    .service-media img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .service-head { display:flex; gap:12px; align-items:center; }
+    .service-icon { width:56px; height:56px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:white; font-size:20px; box-shadow:0 10px 30px rgba(0,204,204,0.08); }
+
+    /* Feature list */
+    .features { display:grid; gap:18px; grid-template-columns:1fr; }
+    @media(min-width:768px){ .features{ grid-template-columns:repeat(3,1fr);} }
+    .feature { background:#fff; padding:18px; border-radius:12px; box-shadow: 0 12px 30px rgba(2,6,23,0.04); transition: transform .28s ease; }
+    .feature:hover { transform: translateY(-6px); }
+
+    /* Pricing */
+    .pricing-grid { display:grid; gap:18px; grid-template-columns:repeat(1,1fr); }
+    @media(min-width:900px){ .pricing-grid{ grid-template-columns:repeat(3,1fr);} }
+    .price-card { background:#fff; padding:20px; border-radius:12px; box-shadow:0 18px 40px rgba(2,6,23,0.06); transition:transform .28s ease; }
+    .price-card.popular { border: 2px solid var(--accent); transform:translateY(-6px); box-shadow:0 30px 60px rgba(0,204,204,0.06); }
+
+    /* Testimonials */
+    .testimonials { display:grid; gap:16px; grid-template-columns:1fr; }
+    @media(min-width:768px) { .testimonials{ grid-template-columns:repeat(3,1fr);} }
+    .testimonial { background:#fff; padding:18px; border-radius:12px; box-shadow: 0 12px 30px rgba(2,6,23,0.04); }
+
+    /* CTA */
+    .cta { background: linear-gradient(90deg,var(--accent),var(--accent-dark)); color:white; padding:36px; border-radius:14px; display:flex; gap:20px; align-items:center; justify-content:space-between; box-shadow:0 30px 80px rgba(0,204,204,0.08); }
+    .cta .left { flex:1; }
+    .cta .right { display:flex; gap:12px; }
+
+    /* ---------- Animations ---------- */
+    [data-animate] { opacity:0; transform: translateY(18px) scale(.98); transition: transform var(--anim-duration) ease, opacity var(--anim-duration) ease; will-change: transform, opacity; }
+    [data-animate].visible { opacity:1; transform: translateY(0) scale(1); }
+
+    .slide-in-left { transform: translateX(-90px); opacity:0; transition: transform var(--anim-duration) ease, opacity var(--anim-duration) ease; }
+    .slide-in-left.visible { transform: translateX(0); opacity:1; }
+
+    .slide-in-right { transform: translateX(90px); opacity:0; transition: transform var(--anim-duration) ease, opacity var(--anim-duration) ease; }
+    .slide-in-right.visible { transform: translateX(0); opacity:1; }
+
+    /* Footer (copied to match existing) */
+    footer.site-footer { background: var(--dark-bg); color: #fff; padding:48px 20px; margin-top:40px; }
+    footer .footer-inner { max-width:1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:30px; align-items:flex-start; justify-content:center; text-align:left; }
+    .footer-box { min-width:220px; flex:1; color:#cfcfe0; }
+    .footer-logo { width:72px; height:72px; border-radius:10px; display:block; margin-bottom:10px; }
+    .social-btn { width:46px; height:46px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; background: rgba(255,255,255,0.06); color:#fff; transition: all .28s; margin-right:8px; }
+    .social-btn:hover { transform: scale(1.12); background: var(--accent); box-shadow: 0 10px 30px rgba(0,204,204,0.14); color:#041022; }
+
+    /* small screens */
+    @media(max-width:767px){
+      .site-logo .brand { display:none; }
+      header.site-header .container { padding:10px 14px; }
+      .hero { padding-top:100px; min-height:56vh; }
+      .hero .hero-inner { flex-direction:column; gap:18px; }
+    }
+  </style>
+</head>
+<body>
+  
+
+
+<body class="font-sans bg-gray-50">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Home 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#000;
+  color:#0c0f1c;
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+.header-wrapper{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+}
+
+.header{
+  width:calc(100% - 60px);
+  max-width:1400px;
+  height:96px;
+  padding:0 34px;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+/* LOGO */
+.logo img{
+  height:52px;
+}
+
+/* DESKTOP NAV */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-weight:600;
+}
+
+.nav a{
+  color:#000000;
+  text-decoration:none;
+}
+.nav a:hover,
+.active{
+  color:#22d3ee;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:140%;
+  left:0;
+  background:#ffffff;
+  border-radius:14px;
+  min-width:160px;
+  box-shadow:0 20px 40px rgba(0,0,0,.7);
+}
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+.dropdown-menu a{
+  display:block;
+  padding:12px 16px;
+  font-size:14px;
+}
+
+/* LOGIN */
+.login-btn{
+  background:#2279e4;
+  color:#000000;
+  padding:10px 22px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.2);
+}
+.hamburger i{
+  font-size:22px;
+  color:#000000;
+}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:110px;
+  left:20px;
+  right:20px;
+  background:rgba(255, 255, 255, 0.92);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  padding:24px;
+  display:none;
+  z-index:999;
+}
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu a,
+.mobile-drop-btn{
+  display:block;
+  width:100%;
+  padding:12px 0;
+  color:#000000;
+  background:none;
+  border:none;
+  text-align:left;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* MOBILE DROPDOWN */
+.mobile-drop{
+  display:none;
+  padding-left:14px;
+}
+.mobile-drop.open{
+  display:block;
+}
+
+/* ================= HERO ================= */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:140px 6% 0;
+  overflow:hidden;
+}
+
+/* BG IMAGE (DESKTOP) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.12),rgba(0,0,0,0.12)),
+    url("bg.webp");
+  background-size:cover;
+  background-position:center;
+  filter:brightness(1.1) contrast(1.1) saturate(1.05);
+  z-index:0;
+}
+
+/* CURVE MASK (DESKTOP) */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:0;
+  right:-12%;
+  width:55%;
+  height:100%;
+  background:inherit;
+  clip-path:ellipse(85% 100% at 100% 50%);
+  z-index:1;
+}
+
+/* DOTS */
+.dots{
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(
+    rgba(255,255,255,0.18) 1px,
+    transparent 1px
+  );
+  background-size:22px 22px;
+  opacity:.14;
+  z-index:2;
+}
+
+/* HERO CONTENT */
+.hero-left{
+  max-width:650px;
+  position:relative;
+  z-index:3;
+}
+
+.hero-left small{
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+.hero-title{
+  font-size:52px;
+  margin:20px 0;
+  line-height:1.2;
+}
+
+.animate-text{
+  color:#ff5c2d;
+  display:inline-block;
+  animation:scaleFade 2.5s infinite;
+}
+
+.hero-btn{
+  background:#ff5c2d;
+  color:#000;
+  padding:14px 30px;
+  border-radius:30px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* TEXT ANIMATION */
+@keyframes scaleFade{
+  0%{transform:scale(.6);opacity:0}
+  40%{transform:scale(1);opacity:1}
+  100%{opacity:0}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1117px){
+  .nav{display:none}
+  .hamburger{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    padding:120px 8% 0;
+    text-align:center;
+  }
+
+  /* MOBILE BG */
+  .hero::before{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),
+      url("bg.webp");
+    background-size:cover;
+    background-position:top center;
+  }
+
+  .hero::after{
+    display:none;
+  }
+
+  .hero-left{
+    margin:auto;
+  }
+
+  .hero-title{
+    font-size:36px;
+  }
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
+<div class="header-wrapper">
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="logo.webp" alt="Stackly">
+    </a>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="index.html" class="active">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="home2.html">Home 2</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="services.html"class="nav-link"
+   style="color:#2563eb; font-weight:700;">Services</a>
+      <a href="aboutus.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="login-btn">LOGIN</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </header>
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+
+  <button class="mobile-drop-btn" id="mobileDropBtn">
+    Home <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="mobile-drop" id="mobileDrop">
+    <a href="home2.html">Home 2</a>
+  </div>
+
+  <a href="about.html">About</a>
+  <a href="services.html">Services</a>
+  <a href="aboutus.html">Dashboard</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html" style="color:#1150bd">LOGIN</a>
+</div>
+
+<script>
+/* MOBILE MENU */
+const hamburgerBtn=document.getElementById("hamburgerBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+const mobileDropBtn=document.getElementById("mobileDropBtn");
+const mobileDrop=document.getElementById("mobileDrop");
+
+hamburgerBtn.onclick=()=>mobileMenu.classList.toggle("open");
+mobileDropBtn.onclick=()=>mobileDrop.classList.toggle("open");
+
+/* HERO TEXT LOOP */
+const words=["Talent","Team","Experts","Leaders"];
+let i=0;
+const t=document.getElementById("txt");
+
+setInterval(()=>{
+  i=(i+1)%words.length;
+  t.textContent=words[i];
+},2500);
+</script>
+
+
+<body class="pt-20">
+
+
+
+
+  <!-- HERO -->
+  <main>
+    <section class="hero" aria-label="Hero">
+      <div class="container hero-inner">
+        <div class="left" data-animate>
+          <h1 class="leading-tight">Premium Services that scale your business — thoughtfully & faster.</h1>
+          <p class="max-w-xl">We combine strategy, design, engineering and automation to build experiences that move metrics. Pick a plan or talk to our team for a tailored solution.</p>
+          <div class="mt-6 flex gap-4 items-center">
+            <a href="contact.html" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+
+        <div class="right slide-in-right" data-animate>
+          <div class="hero-image">
+            <img src="sp1.webp" alt="Hero illustration">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="py-12">
+      <div class="container">
+        <div class="grid md:grid-cols-3 gap-6 items-center">
+          <div data-animate class="feature text-center md:text-left">
+            <h4 class="font-semibold mb-2">Why Choose Stackly?</h4>
+            <p class="mt-2 text-gray-600">We focus on measurable outcomes: conversions, retention, and scaling revenue productized services.</p>
+            <ul class="mt-4 text-sm space-y-2 text-gray-700">
+            </ul>
+          </div>
+
+          <div class="feature" data-animate>
+            <h4 class="font-semibold mb-2">Premium Support</h4>
+            <p class="text-gray-600">Dedicated account manager, SLA-backed delivery and real-time dashboards.</p>
+          </div>
+
+          <div class="feature" data-animate>
+            <h4 class="font-semibold mb-2">Trusted by Businesses</h4>
+            <p class="text-gray-600">Our clients span fintech, SaaS, health-tech and retail brands.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES GRID (12 premium services) -->
+    <section id="services-list" class="py-12 bg-gray-50">
+      <div class="container">
+        <h2 class="text-3xl font-bold mb-6 text-center" data-animate>Our Services</h2>
+
+        <div class="services-grid">
+          <!-- 12 cards -->
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <div>
+                <h3 class="text-lg font-bold">Business Strategy</h3>
+                <p class="text-sm text-gray-600">Market analysis, positioning, and growth roadmaps.</p>
+              </div>
+            </div>
+            <div class="service-media mt-3">
+              <img src="sp2.webp" alt="">
+            </div>
+            <p class="mt-2 text-sm text-gray-700">We build growth loops backed by customer insights and traction experiments.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-magic-wand-sparkles"></i></div>
+              <div><h3 class="text-lg font-bold">Brand Identity</h3><p class="text-sm text-gray-600">Identity, voice, and visual systems.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp3.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Craft unique brands that connect and scale across channels.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+              <div><h3 class="text-lg font-bold">Web Development</h3><p class="text-sm text-gray-600">Fast, secure and SEO-friendly websites.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp4.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Modern stacks, accessibility, performance optimizations.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-paintbrush"></i></div>
+              <div><h3 class="text-lg font-bold">UI / UX Design</h3><p class="text-sm text-gray-600">Human-centered product experiences.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp5.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Design sprints, prototypes and usability testing.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-bullhorn"></i></div>
+              <div><h3 class="text-lg font-bold">Digital Marketing</h3><p class="text-sm text-gray-600">Paid, organic & content strategies.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp6.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Performance-driven campaigns with measurable ROI.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
+              <div><h3 class="text-lg font-bold">Automation Solutions</h3><p class="text-sm text-gray-600">Workflows, automations & bots.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp7.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Reduce manual work and accelerate delivery.</p>
+          </div>
+
+          <!-- 6 more premium offerings -->
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-chart-pie"></i></div>
+              <div><h3 class="text-lg font-bold">Data & Analytics</h3><p class="text-sm text-gray-600">Dashboards, tracking & insights.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp8.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">From event tracking to growth experiments and dashboards.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+              <div><h3 class="text-lg font-bold">App Development</h3><p class="text-sm text-gray-600">Native & cross-platform apps.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp9.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Robust apps built for retention and performance.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div><h3 class="text-lg font-bold">Security & Compliance</h3><p class="text-sm text-gray-600">Security audits & processes.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp10.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Secure deployments, GDPR/ISO-aligned processes.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
+              <div><h3 class="text-lg font-bold">Platform Engineering</h3><p class="text-sm text-gray-600">DevOps, infra & CI/CD.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp11.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Reliable infra that scales with your product.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-users-gear"></i></div>
+              <div><h3 class="text-lg font-bold">Staff Augmentation</h3><p class="text-sm text-gray-600">Expert teams, on-demand.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp12.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Scale teams with vetted product engineers and designers.</p>
+          </div>
+
+          <div class="service-card" data-animate>
+            <div class="service-head">
+              <div class="service-icon"><i class="fa-solid fa-rocket"></i></div>
+              <div><h3 class="text-lg font-bold">Growth Consulting</h3><p class="text-sm text-gray-600">Friction removal & growth sprints.</p></div>
+            </div>
+            <div class="service-media mt-3"><img src="sp13.webp" alt=""></div>
+            <p class="mt-2 text-sm text-gray-700">Rapid experiments to find scalable channels and product improvements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES (core values + more) -->
+    <section class="py-12">
+      <div class="container">
+        <h2 class="text-2xl font-bold text-center mb-6" data-animate>Our Core Values & Capabilities</h2>
+
+        <div class="features">
+          <div class="feature" data-animate>
+            <h4 class="font-semibold">Client-first</h4>
+            <p class="text-gray-600">We align our incentives with client outcomes and prioritize long-term partnerships.</p>
+          </div>
+          <div class="feature" data-animate>
+            <h4 class="font-semibold">Craftsmanship</h4>
+            <p class="text-gray-600">High standards in UI, code quality and product thinking.</p>
+          </div>
+          <div class="feature" data-animate>
+            <h4 class="font-semibold">Data-led</h4>
+            <p class="text-gray-600">We measure everything — experiments drive decisions.</p>
+          </div>
+
+          <div class="feature" data-animate>
+            <h4 class="font-semibold">Security & Privacy</h4>
+            <p class="text-gray-600">Security baked in at every stage of delivery.</p>
+          </div>
+          <div class="feature" data-animate>
+            <h4 class="font-semibold">Transparent Pricing</h4>
+            <p class="text-gray-600">Clear scopes, transparent budgets, and flexible engagement models.</p>
+          </div>
+          <div class="feature" data-animate>
+            <h4 class="font-semibold">Continuous Improvement</h4>
+            <p class="text-gray-600">Iterate quickly, ship responsibly, optimize continuously.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-12 bg-gray-50">
+      <div class="container">
+        <h2 class="text-2xl font-bold text-center mb-6" data-animate>Pricing</h2>
+
+        <div class="pricing-grid">
+          <div class="price-card" data-animate>
+            <h3 class="font-semibold">Starter</h3>
+            <p class="text-gray-600">For new ventures & MVPs</p>
+            <div class="mt-4 text-3xl font-bold">₹15,000<span class="text-base font-normal"> / mo</span></div>
+            <ul class="mt-4 text-sm text-gray-700 space-y-2">
+              <li>• Basic product audit</li>
+              <li>• 1 sprint / month</li>
+              <li>• Email support</li>
+            </ul>
+            <a class="mt-6 inline-block header-cta" href="404.html">Choose Starter</a>
+          </div>
+
+          <div class="price-card popular" data-animate>
+            <h3 class="font-semibold">Growth (Popular)</h3>
+            <p class="text-gray-600">For growing teams wanting scale</p>
+            <div class="mt-4 text-3xl font-bold">₹45,000<span class="text-base font-normal"> / mo</span></div>
+            <ul class="mt-4 text-sm text-gray-700 space-y-2">
+              <li>• 4 sprints / month</li>
+              <li>• Dedicated PM</li>
+              <li>• Priority support</li>
+            </ul>
+            <a class="mt-6 inline-block header-cta" href="404.html">Choose Growth</a>
+          </div>
+
+          <div class="price-card" data-animate>
+            <h3 class="font-semibold">Enterprise</h3>
+            <p class="text-gray-600">Custom solutions & SLAs</p>
+            <div class="mt-4 text-3xl font-bold">Custom</div>
+            <ul class="mt-4 text-sm text-gray-700 space-y-2">
+              <li>• Dedicated team</li>
+              <li>• Onsite or remote</li>
+              <li>• SLA & compliance</li>
+            </ul>
+            <a class="mt-6 inline-block header-cta" href="404.html">Talk to Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-12">
+      <div class="container">
+        <h2 class="text-2xl font-bold text-center mb-6" data-animate>What clients say</h2>
+        <div class="testimonials">
+          <div class="testimonial" data-animate>
+            <p class="text-gray-700">"Stackly doubled our activation rate in 3 months — their product and growth team are excellent."</p>
+            <div class="mt-3 font-semibold">— Priya, Product Lead</div>
+          </div>
+
+          <div class="testimonial" data-animate>
+            <p class="text-gray-700">"Professional, communicative and fast. Delivery matched our timelines and quality expectations."</p>
+            <div class="mt-3 font-semibold">— Rohit, Founder</div>
+          </div>
+
+          <div class="testimonial" data-animate>
+            <p class="text-gray-700">"Highly recommend for SaaS teams that want a pragmatic, data-driven partner."</p>
+            <div class="mt-3 font-semibold">— Neha, Head of Growth</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12">
+      <div class="container">
+        <div class="cta" data-animate>
+          <div class="left">
+            <h3 class="text-xl font-bold">Ready to accelerate growth?</h3>
+            <p class="mt-2 text-sm">Book a free 30-minute discovery call — we’ll audit your funnel and propose a 90-day plan.</p>
+          </div>
+          <div class="right">
+            <a href="contact.html" class="header-cta">Book a Call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<footer class="bg-[#0c0016] text-gray-300 py-16 px-6">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-3 gap-12 items-start text-center md:text-left">
+
+      <!-- LEFT -->
+      <div>
+        <img src="logo.webp" class="w-20 mx-auto md:mx-0 mb-3" />
+        <h3 class="text-2xl font-bold text-white"></h3>
+        <p class="mt-3 text-gray-400 text-sm leading-relaxed">
+          Get your business engaged
+        </p>
+      </div>
+
+      <!-- CENTER -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Main</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="about.html" class="hover:text-white">About us</a></li>
+          <li><a href="services.html" class="hover:text-white">Services</a></li>
+          <li><a href="aboutus.html" class="hover:text-white">Dashboard</a></li>
+          <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="md:border-l md:border-gray-700 md:pl-10">
+        <h4 class="text-xl font-semibold text-white mb-4 tracking-wide">Social</h4>
+
+        <ul class="space-y-3 text-gray-300 text-sm">
+           <li><i class="fa-brands fa-facebook mr-2"></i> <a href="404.html" class="hover:text-white">Facebook</a></li>
+          <li><i class="fa-brands fa-twitter mr-2"></i> <a href="404.html" class="hover:text-white">Twitter</a></li>
+          <li><i class="fa-brands fa-linkedin mr-2"></i> <a href="404.html" class="hover:text-white">LinkedIn</a></li>
+          <li><i class="fa-brands fa-instagram mr-2"></i> <a href="404.html" class="hover:text-white">Instagram</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-6">
+      © Stackly – 2025. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
+  <!-- ========== SCRIPTS: hamburger + animations ========== -->
+  <script>
+    (function(){
+      // Elements
+      const header = document.getElementById('siteHeader');
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      // Ensure header shrink on scroll
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) header.classList.add('shrink'); else header.classList.remove('shrink');
+      });
+
+      // Hamburger toggle (with locking scroll)
+      function openMenu() {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        hamburgerBtn.setAttribute('aria-expanded','true');
+        hamburgerBtn.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        hamburgerBtn.setAttribute('aria-expanded','false');
+        hamburgerBtn.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (mobileMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+      });
+
+      // close when clicking outside or on link
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.classList.contains('hidden')){
+          if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) closeMenu();
+        }
+      });
+      mobileMenu.addEventListener('click', (e) => { if (e.target.tagName === 'A') closeMenu(); });
+
+      // Close on resize to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) closeMenu();
+      });
+
+      // IntersectionObserver for animations
+      const animated = document.querySelectorAll('[data-animate]');
+      const options = { threshold: 0.18 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const target = entry.target;
+          const once = target.getAttribute('data-once') === 'true';
+          const repeat = target.getAttribute('data-repeat') === 'true';
+
+          if (entry.isIntersecting) {
+            target.classList.add('visible');
+          } else {
+            if (!once && repeat) target.classList.remove('visible');
+          }
+        });
+      }, options);
+
+      animated.forEach(el => observer.observe(el));
+
+      // Accessibility: close mobile menu with ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
