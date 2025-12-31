@@ -290,6 +290,31 @@ body{
     font-size:36px;
   }
 }
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: black;
+  padding: 12px 20px;
+  border-radius: 18px;
+  min-width: 130px;
+  display: none;
+}
+
+.dropdown-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+/* show when active */
+.dropdown-menu.show {
+  display: block;
+}
+
 </style>
 
 
@@ -302,12 +327,15 @@ body{
     </a>
 
     <nav class="nav">
-      <div class="dropdown">
-        <a href="index.html" class="active">Home <i class="fa-solid fa-chevron-down"></i></a>
-        <div class="dropdown-menu">
-          <a href="home2.html">Home 2</a>
-        </div>
-      </div>
+  <div class="dropdown">
+    <a href="index.html" class="active" id="homeToggle">
+      Home <i class="fa-solid fa-chevron-down"></i>
+    </a>
+
+    <div class="dropdown-menu" id="homeMenu">
+      <a href="home2.html">Home 2</a>
+    </div>
+  </div>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="aboutus.html">Dashboard</a>
